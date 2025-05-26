@@ -1,9 +1,29 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { copyFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// Custom plugin to copy icon files
+const copyIconsPlugin = () => {
+  return {
+    name: 'copy-icons',
+    writeBundle() {
+      // Copy icon files to dist
+      const iconFiles = ['icon-16.png', 'icon-48.png', 'icon-128.png'];
+      iconFiles.forEach(file => {
+        const src = join('public', file);
+        const dest = join('dist', file);
+        if (existsSync(src)) {
+          copyFileSync(src, dest);
+        }
+      });
+    }
+  };
+};
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), copyIconsPlugin()],
   server: {
     open: '/popup.html',
   },
