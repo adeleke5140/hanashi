@@ -12,7 +12,7 @@
 
 :root {
     --primary: rgba(253, 255, 121, 1);
-    --secondary: rgba(20, 22, 18, 1);
+    --secondary: rgba(20, 22, 18, 0.5);
 }
 
 html {
@@ -142,7 +142,6 @@ audio::-webkit-media-controls-volume-slider {
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-
 }
 
 .audio-progress::-webkit-slider-track,
@@ -150,6 +149,7 @@ audio::-webkit-media-controls-volume-slider {
   height: 8px;
   border-radius: 4px;
   border: none;
+  background: transparent;
 }
 
 .audio-progress::-webkit-slider-thumb,
@@ -162,7 +162,8 @@ audio::-webkit-media-controls-volume-slider {
   background: var(--primary);
   cursor: pointer;
   border: 1px solid var(--secondary);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .audio-progress::-webkit-slider-thumb:hover,
@@ -173,7 +174,7 @@ audio::-webkit-media-controls-volume-slider {
 
 .audio-progress::-moz-range-track,
 .audio-volume::-moz-range-track {
-  background: #4a5568;
+  background: rgba(253, 255, 121, 0.1);
   height: 8px;
   border-radius: 4px;
   border: none;
@@ -189,4 +190,11 @@ audio::-webkit-media-controls-volume-slider {
   border: 2px solid var(--secondary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   -moz-appearance: none;
+}
+
+.audio-progress::-moz-range-progress,
+.audio-volume::-moz-range-progress {
+  background: var(--primary);
+  height: 8px;
+  border-radius: 4px;
 }
