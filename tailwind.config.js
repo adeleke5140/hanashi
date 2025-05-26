@@ -9,6 +9,9 @@ module.exports = {
       'primary': 'rgba(253, 255, 121, 1)',
       'secondary': 'rgba(20, 22, 18, 1)',
     },
+    fontFamily: {
+      'mono': ['Berkeley Mono','Fira Code','ui-monospace', 'monospace'],
+    },
    },
   },
   plugins: [],
