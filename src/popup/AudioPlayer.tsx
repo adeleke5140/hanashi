@@ -127,6 +127,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, autoPlay = false, onAudi
                 value={progressPercentage}
                 onChange={handleProgressChange}
                 className="w-full h-2 bg-primary/10 rounded-lg appearance-none cursor-pointer audio-progress"
+                style={{
+                  background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${progressPercentage}%, rgba(253, 255, 121, 0.1) ${progressPercentage}%, rgba(253, 255, 121, 0.1) 100%)`
+                }}
               />
             </div>
 
@@ -149,6 +152,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, autoPlay = false, onAudi
               value={volume * 100}
               onChange={handleVolumeChange}
               className="w-full h-2 bg-primary/10 rounded-lg appearance-none cursor-pointer audio-volume"
+              style={{
+                background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${volume * 100}%, rgba(253, 255, 121, 0.1) ${volume * 100}%, rgba(253, 255, 121, 0.1) 100%)`
+              }}
             />
           </div>
 
