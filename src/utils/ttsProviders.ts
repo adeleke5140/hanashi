@@ -30,10 +30,12 @@ const config = {
 
 // Example: ElevenLabs API integration
 async function fetchFromElevenLabs({ text, gender }: TTSOptions): Promise<Blob> {
-  const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+  // Get API key from Chrome storage (user-provided)
+  const result = await chrome.storage.local.get(['elevenLabsApiKey']);
+  const apiKey = result.elevenLabsApiKey;
   
   if (!apiKey) {
-    throw new Error('ElevenLabs API key not found. Please set VITE_ELEVENLABS_API_KEY in your environment variables.');
+    throw new Error('Please set your ElevenLabs API key in the extension settings.');
   }
   
   const voiceId = gender === 'male' ? Asahi : Morioki;
