@@ -1,6 +1,6 @@
 # Nihongo Speech Chrome Extension
 
-Convert Japanese sentences to realistic male and female speech using advanced TTS APIs (OpenAI, ElevenLabs, Sesame AI, etc).
+Convert Japanese sentences to realistic male and female speech using elevenLabs TTS API
 
 ## Features
 - Input a Japanese sentence and get a realistic voice reading (male/female)
