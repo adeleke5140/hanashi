@@ -4,8 +4,8 @@
   "description": "Chrome extension for Japanese TTS with realistic voices.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:prod": "NODE_ENV=production vite build",
+    "build": "vite build --mode development",
+    "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui"
