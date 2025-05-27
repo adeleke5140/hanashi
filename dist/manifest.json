@@ -3,12 +3,17 @@
   "name": "Nihongo Speech",
   "version": "1.0.0",
   "description": "Convert Japanese sentences to realistic male and female speech using advanced TTS APIs.",
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
     }
   },
   "background": {
@@ -18,6 +23,6 @@
     "storage"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "https://api.elevenlabs.io/*"
   ]
 } 
