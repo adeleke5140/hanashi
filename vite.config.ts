@@ -22,7 +22,7 @@ const copyIconsPlugin = () => {
   };
 };
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react(), copyIconsPlugin()],
   server: {
     open: '/popup.html',
@@ -35,6 +35,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    minify: mode === 'production' ? 'esbuild' : false,
+    sourcemap: mode !== 'production',
     rollupOptions: {
       input: {
         popup_entry: 'popup.html',
@@ -47,4 +49,4 @@ export default defineConfig({
     },
     emptyOutDir: true,
   },
-}); 
+})); 
