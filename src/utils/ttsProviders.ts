@@ -12,10 +12,30 @@ export async function fetchTTS({ text, gender }: TTSOptions): Promise<Blob> {
 
 const Asahi = 'GKDaBI8TKSBJVhsCLD6n'
 const Morioki = '8EkOjt4xTPGMclNlh1pk'
+const Sakura = 'RBnMinrYKeccY3vaUxlZ'
+const Saanu = '50YSQEDPA2vlOxhCseP4'
 
-// Example: ElevenLabs API integration (replace with your API key)
+const config = {
+  male: {
+    stability: 0.5,
+    similarity_boost: 0.14,
+    use_speaker_boost: true,
+  },
+  female: {
+    speed: 0.9,
+    stability: 0.5,
+    similarity_boost: 0.75
+  }
+}
+
+// Example: ElevenLabs API integration
 async function fetchFromElevenLabs({ text, gender }: TTSOptions): Promise<Blob> {
-  const apiKey = 'sk_47147aad742cdc08ee6039966a1dff46e2df05489e07acf3';
+  const apiKey = import.meta.env.VITE_ELEVENLABS_API_KEY;
+  
+  if (!apiKey) {
+    throw new Error('ElevenLabs API key not found. Please set VITE_ELEVENLABS_API_KEY in your environment variables.');
+  }
+  
   const voiceId = gender === 'male' ? Asahi : Morioki;
   const url = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
   const response = await fetch(url, {
