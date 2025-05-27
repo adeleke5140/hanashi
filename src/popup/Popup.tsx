@@ -95,10 +95,6 @@ const Popup: React.FC = () => {
         </button>
       </form>
       {error && <div className="text-red-600 mt-2">{error || 'エラーが発生しました'}</div>}
-      
-      {/* Preview Audio Player - Remove this when you're done testing */}
-       <AudioPlayer preview={true} />
-       
       {audioDataUrl && (
         <AudioPlayer
           src={audioDataUrl}
