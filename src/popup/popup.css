@@ -156,12 +156,12 @@ audio::-webkit-media-controls-volume-slider {
 .audio-volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
+  height: 16px;
+  width: 12px;
+  border-radius: 0;
   background: var(--primary);
   cursor: pointer;
-  border: 1px solid var(--secondary);
+  border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: relative;
 }
