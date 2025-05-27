@@ -10,7 +10,11 @@ Convert Japanese sentences to realistic male and female speech using advanced TT
 ## Setup
 1. Clone this repo
 2. Run `npm install`
-3. Add your TTS API key and endpoint in `src/utils/ttsProviders.ts`
+3. Create a `.env` file in the root directory and add your TTS API key:
+   ```
+   VITE_ELEVENLABS_API_KEY=your_api_key_here
+   ```
+   (You can copy `.env.example` as a starting point if available)
 4. Run `npm run build` to generate the extension files (using Vite)
 
 ## Local Testing
@@ -22,6 +26,7 @@ Convert Japanese sentences to realistic male and female speech using advanced TT
 ## API Providers
 - The code is modular: you can easily swap between OpenAI, ElevenLabs, Sesame AI, or any other TTS provider.
 - See `src/utils/ttsProviders.ts` for integration details.
+- Add your API keys as environment variables in the `.env` file.
 
 ## Development
 - Uses TypeScript, React, Tailwind CSS, and Vite
@@ -31,4 +36,4 @@ Convert Japanese sentences to realistic male and female speech using advanced TT
 
 ---
 
-**Note:** This extension does not ship with any API keys. You must provide your own in the appropriate file. 
+**Note:** This extension does not ship with any API keys. You must provide your own in a `.env` file in the root directory. 
