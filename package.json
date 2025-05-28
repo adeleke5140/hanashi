@@ -1,34 +1,19 @@
 {
-  "name": "nihongo-speech",
-  "version": "1.0.0",
-  "description": "Chrome extension for Japanese TTS with realistic voices.",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build --mode development",
-    "build:prod": "vite build --mode production",
-    "preview": "vite preview",
-    "test": "vitest",
-    "test:ui": "vitest --ui"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@types/chrome": "^0.0.244",
-    "@types/node": "^22.15.21",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.2.0",
-    "@vitest/ui": "^3.1.4",
-    "autoprefixer": "^10.4.16",
-    "happy-dom": "^17.4.7",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.0",
-    "vite": "^5.2.0",
-    "vitest": "^3.1.4"
-  }
+	"name": "nihongo-speech",
+	"version": "0.0.1",
+	"description": "A Chrome extension for Japanese speech recognition",
+	"scripts": {
+		"build": "pnpm --filter nihongo-speech-chrome build",
+		"dev": "pnpm --filter nihongo-speech-chrome dev",
+		"build:r": "pnpm --filter nihongo-speech-raycast build",
+		"dev:r": "pnpm --filter nihongo-speech-raycast dev",
+		"format": "biome format --write .",
+		"lint": "biome lint --write"
+	},
+	"keywords": ["chrome-extension", "japanese", "speech", "recognition"],
+	"author": "adeleke5140",
+	"license": "GPL-3.0",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4"
+	}
 }
