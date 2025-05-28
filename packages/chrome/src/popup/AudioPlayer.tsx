@@ -101,7 +101,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 	};
 
 	const formatTime = (time: number) => {
+<<<<<<< HEAD
 		if (Number.isNaN(time)) return "0:00";
+=======
+		if (isNaN(time)) return "0:00";
+>>>>>>> 30ebe63 (chore: remove legacy configuration files and update project structure for Chrome extension)
 		const minutes = Math.floor(time / 60);
 		const seconds = Math.floor(time % 60);
 		return `${minutes}:${seconds.toString().padStart(2, "0")}`;
