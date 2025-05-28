@@ -17,16 +17,7 @@ const Popup: React.FC = () => {
 	const [hasApiKey, setHasApiKey] = useState(false);
 
 	useEffect(() => {
-		if (chrome && chrome.storage && chrome.storage.local) {
-			chrome.storage.local.get(["elevenLabsApiKey"]).then((result) => {
-				if (result.elevenLabsApiKey) {
-					setApiKey(result.elevenLabsApiKey);
-					setHasApiKey(true);
-				} else {
-					setShowSettings(true);
-				}
-			});
-		} else {
+		if (!chrome || !chrome.storage || !chrome.storage.local) {
 			console.warn("chrome.storage.local not available. Running in dev mode?");
 			const localApiKey = localStorage.getItem("elevenLabsApiKey_dev");
 			if (localApiKey) {
@@ -35,49 +26,60 @@ const Popup: React.FC = () => {
 			} else {
 				setShowSettings(true);
 			}
+
+			return;
 		}
+
+		chrome.storage.local.get(["elevenLabsApiKey"]).then((result) => {
+			if (result.elevenLabsApiKey) {
+				setApiKey(result.elevenLabsApiKey);
+				setHasApiKey(true);
+			} else {
+				setShowSettings(true);
+			}
+		});
 
 		return () => {
 			if (audioElement) {
 				audioElement.pause();
 			}
 		};
-	}, [audioDataUrl, audioElement]);
+	}, [audioElement]);
 
 	const saveApiKey = () => {
 		if (apiKey.trim()) {
-			if (chrome && chrome.storage && chrome.storage.local) {
-				chrome.storage.local
-					.set({ elevenLabsApiKey: apiKey.trim() })
-					.then(() => {
-						setHasApiKey(true);
-						setShowSettings(false);
-						setError(null);
-					});
-			} else {
+			if (!chrome || !chrome.storage || !chrome.storage.local) {
 				localStorage.setItem("elevenLabsApiKey_dev", apiKey.trim());
 				setHasApiKey(true);
 				setShowSettings(false);
 				setError(null);
 				console.warn("Saved API key to localStorage for dev mode.");
+				return;
 			}
+
+			chrome.storage.local.set({ elevenLabsApiKey: apiKey.trim() }).then(() => {
+				setHasApiKey(true);
+				setShowSettings(false);
+				setError(null);
+			});
 		}
 	};
 
 	const clearApiKey = () => {
-		if (chrome && chrome.storage && chrome.storage.local) {
-			chrome.storage.local.remove(["elevenLabsApiKey"]).then(() => {
-				setApiKey("");
-				setHasApiKey(false);
-				setShowSettings(true);
-			});
-		} else {
+		if (!chrome || !chrome.storage || !chrome.storage.local) {
 			localStorage.removeItem("elevenLabsApiKey_dev");
 			setApiKey("");
 			setHasApiKey(false);
 			setShowSettings(true);
 			console.warn("Cleared API key from localStorage for dev mode.");
+			return;
 		}
+
+		chrome.storage.local.remove(["elevenLabsApiKey"]).then(() => {
+			setApiKey("");
+			setHasApiKey(false);
+			setShowSettings(true);
+		});
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -94,38 +96,39 @@ const Popup: React.FC = () => {
 		setAudioDataUrl(null);
 		if (audioElement) audioElement.pause();
 
-		if (chrome && chrome.runtime && chrome.runtime.sendMessage) {
-			chrome.runtime.sendMessage(
-				{
-					type: "TTS_REQUEST",
-					payload: { text, gender },
-				},
-				(response) => {
-					setLoading(false);
-					if (chrome.runtime.lastError) {
-						console.error(
-							"TTS Request failed:",
-							chrome.runtime.lastError.message,
-						);
-						setError(`Error: ${chrome.runtime.lastError.message}`);
-						return;
-					}
-
-					if (response?.success && response.dataUrl) {
-						setAudioDataUrl(response.dataUrl);
-					} else {
-						console.error("TTS Response error:", response?.error);
-						setError(response?.error || "Unknown error from background script");
-					}
-				},
-			);
-		} else {
+		if (!chrome || !chrome.runtime || !chrome.runtime.sendMessage) {
 			setLoading(false);
 			setError("Cannot send TTS request outside of extension context.");
 			console.warn(
 				"chrome.runtime.sendMessage not available. Running in dev mode?",
 			);
+			return;
 		}
+
+		chrome.runtime.sendMessage(
+			{
+				type: "TTS_REQUEST",
+				payload: { text, gender },
+			},
+			(response) => {
+				setLoading(false);
+				if (chrome.runtime.lastError) {
+					console.error(
+						"TTS Request failed:",
+						chrome.runtime.lastError.message,
+					);
+					setError(`Error: ${chrome.runtime.lastError.message}`);
+					return;
+				}
+
+				if (response?.success && response.dataUrl) {
+					setAudioDataUrl(response.dataUrl);
+				} else {
+					console.error("TTS Response error:", response?.error);
+					setError(response?.error || "Unknown error from background script");
+				}
+			},
+		);
 	};
 
 	return (
@@ -133,12 +136,15 @@ const Popup: React.FC = () => {
 			<div className="flex items-center justify-between mb-2">
 				<h1 className="text-2xl font-semibold select-none">Nihongo Speech</h1>
 				<button
+					type="button"
 					onClick={() => setShowSettings(!showSettings)}
 					className="text-primary hover:text-primary/80 text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded-lg px-1"
 				>
 					{hasApiKey ? (
 						<span>
 							<svg
+								aria-label="API Key Saved"
+								role="img"
 								xmlns="http://www.w3.org/2000/svg"
 								width="24"
 								height="24"
@@ -157,6 +163,8 @@ const Popup: React.FC = () => {
 					) : (
 						<span className="flex items-center gap-1">
 							<svg
+								aria-label="API Key Not Saved"
+								role="img"
 								xmlns="http://www.w3.org/2000/svg"
 								className="w-4 h-4"
 								width="24"
@@ -205,6 +213,7 @@ const Popup: React.FC = () => {
 						</button>
 						{hasApiKey && (
 							<button
+								type="button"
 								onClick={clearApiKey}
 								className="bg-[rgba(144,144,144,0.18)] text-white text-sm py-1 px-3 rounded-lg hover:bg-[rgba(144,144,144,0.30)]"
 							>
@@ -234,7 +243,7 @@ const Popup: React.FC = () => {
 							checked={gender === "female"}
 							onChange={() => setGender("female")}
 						/>
-						<span className="radio-checkmark"></span>
+						<span className="radio-checkmark" />
 						女性
 					</label>
 					<label className="custom-radio text-sm flex items-center gap-1">
@@ -246,7 +255,7 @@ const Popup: React.FC = () => {
 							checked={gender === "male"}
 							onChange={() => setGender("male")}
 						/>
-						<span className="radio-checkmark"></span>
+						<span className="radio-checkmark" />
 						男性
 					</label>
 				</div>

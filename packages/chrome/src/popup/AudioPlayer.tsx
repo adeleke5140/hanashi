@@ -101,7 +101,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 	};
 
 	const formatTime = (time: number) => {
-		if (isNaN(time)) return "0:00";
+		if (Number.isNaN(time)) return "0:00";
 		const minutes = Math.floor(time / 60);
 		const seconds = Math.floor(time % 60);
 		return `${minutes}:${seconds.toString().padStart(2, "0")}`;
@@ -111,12 +111,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
 	return (
 		<div className="bg-[#1F221E] rounded-xl p-4 mt-4">
+			{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
 			{src && !preview && <audio ref={audioRef} src={src} preload="metadata" />}
 
 			<div className="flex flex-col gap-4">
 				{/* Play Button - Centered */}
 				<div className="flex items-center justify-between gap-3">
 					<button
+						type="button"
 						onClick={togglePlayPause}
 						className="flex items-center justify-center w-8 h-8 bg-primary text-secondary rounded-full hover:bg-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-lg"
 					>
@@ -132,7 +134,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 								aria-hidden="true"
 								xmlns="http://www.w3.org/2000/svg"
 							>
-								<path d="M3.5 3.5a1 1 0 0 1 1-1H6a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1v-9ZM9 3.5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-9Z"></path>
+								<path d="M3.5 3.5a1 1 0 0 1 1-1H6a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1v-9ZM9 3.5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-9Z" />
 							</svg>
 						) : (
 							<svg
@@ -146,7 +148,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 								aria-hidden="true"
 								xmlns="http://www.w3.org/2000/svg"
 							>
-								<path d="m5.604 2.41 7.23 4.502a1.375 1.375 0 0 1-.02 2.345L5.585 13.6a1.375 1.375 0 0 1-2.083-1.18V3.576A1.375 1.375 0 0 1 5.604 2.41Z"></path>
+								<path d="m5.604 2.41 7.23 4.502a1.375 1.375 0 0 1-.02 2.345L5.585 13.6a1.375 1.375 0 0 1-2.083-1.18V3.576A1.375 1.375 0 0 1 5.604 2.41Z" />
 							</svg>
 						)}
 					</button>
@@ -177,6 +179,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
 				<div className="flex items-center gap-3">
 					<svg
+						aria-label="Volume"
+						role="img"
 						width="16"
 						height="16"
 						viewBox="0 0 24 24"

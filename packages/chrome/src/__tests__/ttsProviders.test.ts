@@ -14,9 +14,9 @@ describe("fetchTTS", () => {
 			expect(blob.type).toBe("audio/mpeg"); // Or whatever the expected type is
 			expect(blob.size).toBeGreaterThan(0);
 			// Further checks can be added if needed, e.g., if the API returns specific error structures for bad requests
-		} catch (error: any) {
+		} catch (error: unknown) {
 			// Log the detailed error if the API call itself fails
-			console.error("TTS API call failed during test:", error.message);
+			console.error("TTS API call failed during test:", getErrorMessage(error));
 			// If the error is an API error we expect (e.g. bad API key), we might want to assert that
 			// For now, we'll rethrow to make the test fail clearly if any unexpected error occurs
 			throw error;
@@ -34,8 +34,8 @@ describe("fetchTTS", () => {
 			expect(blob).toBeInstanceOf(Blob);
 			expect(blob.type).toBe("audio/mpeg"); // Or whatever the expected type is
 			expect(blob.size).toBeGreaterThan(0);
-		} catch (error: any) {
-			console.error("TTS API call failed during test:", error.message);
+		} catch (error: unknown) {
+			console.error("TTS API call failed during test:", getErrorMessage(error));
 			throw error;
 		}
 	}, 30000); // Increase timeout to 30 seconds
