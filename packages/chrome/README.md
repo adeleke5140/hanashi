@@ -3,6 +3,9 @@
 A Chrome extension for converting Japanese text to realistic speech using ElevenLabs AI voices.
 
 ## Features
+![CleanShot 2025-05-28 at 16 59 01@2x](https://github.com/user-attachments/assets/52f7dc5a-5f9e-4549-8c02-3bf2c7a7fce1)
+
+
 
 - 🎌 **Japanese TTS**: Convert Japanese text to natural-sounding speech
 - 👥 **Multiple Voices**: Choose between male (Asahi) and female (Morioki) voices
