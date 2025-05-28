@@ -57,10 +57,3 @@ npm run dev
 - ✅ **Minimal permissions** - only accesses ElevenLabs API
 - ✅ **No data collection** - all processing happens locally
 
-## Chrome Web Store Deployment
-
-This extension is ready for Chrome Web Store submission:
-
-1. Run `npm run build:prod`
-2. Zip the `dist` folder
-3. Upload to Chrome Web Store Developer Dashboard
