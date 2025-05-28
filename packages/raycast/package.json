@@ -1,0 +1,12 @@
+{
+	"name": "nihongo-speech-raycast",
+	"version": "1.0.0",
+	"description": "A Raycast extension for Japanese speech recognition",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "adeleke5140",
+	"license": "GPL-3.0"
+}
