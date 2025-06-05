@@ -110,7 +110,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="bg-[#1F221E] rounded-xl p-4 mt-4">
+    <div className="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 mt-4">
       {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       {src && !preview && <audio ref={audioRef} src={src} preload="metadata" />}
 
@@ -120,7 +120,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
           <button
             type="button"
             onClick={togglePlayPause}
-            className="flex items-center justify-center w-8 h-8 bg-primary text-secondary rounded-full hover:bg-primary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-lg"
+            className="flex items-center justify-center w-8 h-8 bg-[var(--background)] text-[var(--secondary)] rounded-full  transition-colors focus:outline-none"
           >
             {isPlaying ? (
               <svg
@@ -153,7 +153,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             )}
           </button>
           <div className="flex flex-1 items-center gap-3">
-            <span className="text-white text-sm font-mono min-w-[2.5rem]">
+            <span className="text-[var(--primary)] text-sm font-mono min-w-[2.5rem]">
               {formatTime(currentTime)}
             </span>
 
@@ -164,31 +164,60 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 max="100"
                 value={progressPercentage}
                 onChange={handleProgressChange}
-                className="w-full h-2 bg-primary/10 rounded-lg appearance-none cursor-pointer audio-progress"
+                className="w-full h-2 rounded-[0.2rem] appearance-none cursor-pointer audio-progress"
                 style={{
-                  background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${progressPercentage}%, rgba(253, 255, 121, 0.1) ${progressPercentage}%, rgba(253, 255, 121, 0.1) 100%)`,
+                  background: `linear-gradient(to right, var(--gradient-stop-1) 0%, var(--gradient-stop-2) ${progressPercentage}%, var(--border) ${progressPercentage}%, var(--border) 100%)`,
                 }}
               />
             </div>
 
-            <span className="text-white text-sm font-mono min-w-[2.5rem]">
+            <span className="text-[var(--primary)] text-sm font-mono min-w-[2.5rem]">
               {formatTime(duration)}
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <svg
-            aria-label="Volume"
-            role="img"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="white"
-            className="flex-shrink-0"
-          >
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
-          </svg>
+        <div className="flex text-[var(--primary)] items-center gap-3">
+          <span className="inline-grid bg-gray-50/90 p-2 rounded-lg place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 18" className="size-6">
+              <title>volume-up</title>
+              <g fill="#212121">
+                <path
+                  d="M5,5.75H2.25c-.828,0-1.5,.672-1.5,1.5v3.5c0,.828,.672,1.5,1.5,1.5h2.75l5.48,3.508c.333,.213,.77-.026,.77-.421V2.664c0-.395-.437-.634-.77-.421l-5.48,3.508Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="1.25"
+                  d="m19 7-4 4m4 0-4-4"
+                  className={`transition-all origin-center delay-100 duration-300 ${Math.round(volume * 100) <= 0 ? "scale-100" : "scale-0 translate-x-1 opacity-0"}`}
+                />
+                <path
+                  d="M13.914,7.586c.781,.781,.781,2.047,0,2.828"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  className={`transition-all origin-center delay-100 duration-300 ${Math.round(volume * 100) > 0 ? "scale-100" : "scale-0 opacity-0"}`}
+                />
+                <path
+                  d="M15.859,5.641c1.855,1.855,1.855,4.863,0,6.718"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  className={`transition-all origin-center duration-300 ${Math.round(volume * 100) > 50 ? "scale-100" : "scale-0 opacity-0"}`}
+                />
+              </g>
+            </svg>
+          </span>
 
           <div className="flex-1">
             <input
@@ -197,14 +226,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               max="100"
               value={volume * 100}
               onChange={handleVolumeChange}
-              className="w-full h-2 bg-primary/10 rounded-lg appearance-none cursor-pointer audio-volume"
+              className="w-full h-2 rounded-[0.2rem] appearance-none cursor-pointer audio-volume"
               style={{
-                background: `linear-gradient(to right, var(--primary) 0%, var(--primary) ${volume * 100}%, rgba(253, 255, 121, 0.1) ${volume * 100}%, rgba(253, 255, 121, 0.1) 100%)`,
+                background: `linear-gradient(to right, var(--gradient-stop-1) 0%, var(--gradient-stop-2) ${volume * 100}%, var(--border) ${volume * 100}%, var(--border) 100%)`,
               }}
             />
           </div>
 
-          <span className="text-white text-sm font-mono min-w-[1.5rem] text-right">
+          <span className="text-[var(--primary)] text-sm font-mono min-w-[1.5rem] text-right">
             {Math.round(volume * 100)}
           </span>
         </div>
