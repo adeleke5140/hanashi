@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import Popup from "../popup/Popup"; // Adjust path if your Popup component is elsewhere
+import Popup from "../popup/popup"; // Adjust path if your Popup component is elsewhere
 import * as ttsProviders from "../utils/ttsProviders"; // To mock fetchTTS
 
 // Mock the ttsProviders module
