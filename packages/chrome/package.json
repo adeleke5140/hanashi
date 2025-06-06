@@ -1,6 +1,6 @@
 {
   "name": "nihongo-speech-chrome",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Chrome extension for Japanese TTS with realistic voices.",
   "scripts": {
     "dev": "vite",
