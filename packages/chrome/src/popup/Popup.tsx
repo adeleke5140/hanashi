@@ -115,7 +115,7 @@ const Popup = () => {
       {error && (
         <ErrorUI error={error || "エラーが発生しました"} />
     )}
-    <AudioPlayer preview={true}/>
+
     {audioDataUrl && (
         <AudioPlayer
           src={audioDataUrl}
