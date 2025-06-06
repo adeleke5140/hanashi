@@ -120,7 +120,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
           <button
             type="button"
             onClick={togglePlayPause}
-            className="flex items-center justify-center w-8 h-8 bg-[var(--background)] text-[var(--secondary)] rounded-full  transition-colors focus:outline-none"
+            className="flex items-center focus:outline-none focus-visible:ring-[3px] justify-center w-8 h-8 bg-[var(--background)] text-[var(--secondary)] rounded-full  transition-colors"
           >
             {isPlaying ? (
               <svg
@@ -164,7 +164,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 max="100"
                 value={progressPercentage}
                 onChange={handleProgressChange}
-                className="w-full h-2 rounded-[0.2rem] appearance-none cursor-pointer audio-progress"
+                className="w-full h-2 rounded-[0.2rem] focus:outline-none focus-visible:ring-[3px] appearance-none cursor-pointer audio-progress"
                 style={{
                   background: `linear-gradient(to right, var(--gradient-stop-1) 0%, var(--gradient-stop-2) ${progressPercentage}%, var(--border) ${progressPercentage}%, var(--border) 100%)`,
                 }}
@@ -178,7 +178,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         </div>
 
         <div className="flex text-[var(--primary)] items-center gap-3">
-          <span className="inline-grid bg-gray-50/90 p-2 rounded-lg place-items-center">
+          <span className="inline-grid bg-gray-50/90 dark:bg-[hsla(0,0%,100%,.16)] backdrop-blur-[8px] p-2 pr-[0.2rem] rounded-lg place-items-center">
             <svg width="18" height="18" viewBox="0 0 24 18" className="size-6">
               <title>volume-up</title>
               <g fill="#212121">
@@ -226,7 +226,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               max="100"
               value={volume * 100}
               onChange={handleVolumeChange}
-              className="w-full h-2 rounded-[0.2rem] appearance-none cursor-pointer audio-volume"
+              className="w-full h-2 rounded-[0.2rem] focus:outline-none focus-visible:ring-[3px] appearance-none cursor-pointer audio-volume"
               style={{
                 background: `linear-gradient(to right, var(--gradient-stop-1) 0%, var(--gradient-stop-2) ${volume * 100}%, var(--border) ${volume * 100}%, var(--border) 100%)`,
               }}
