@@ -1,19 +1,19 @@
 {
-	"name": "nihongo-speech",
-	"version": "0.0.1",
-	"description": "A Chrome extension for Japanese speech recognition",
-	"scripts": {
-		"build": "pnpm --filter nihongo-speech-chrome build",
-		"dev": "pnpm --filter nihongo-speech-chrome dev",
-		"build:r": "pnpm --filter nihongo-speech-raycast build",
-		"dev:r": "pnpm --filter nihongo-speech-raycast dev",
-		"format": "biome format --write .",
-		"lint": "biome lint --write"
-	},
-	"keywords": ["chrome-extension", "japanese", "speech", "recognition"],
-	"author": "adeleke5140",
-	"license": "GPL-3.0",
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4"
-	}
+  "name": "nihongo-speech",
+  "version": "0.0.1",
+  "description": "A Chrome extension for Japanese speech recognition",
+  "scripts": {
+    "build": "pnpm --filter nihongo-speech-chrome build",
+    "dev": "pnpm --filter nihongo-speech-chrome dev",
+    "build:r": "pnpm --filter nihongo-speech-raycast build",
+    "dev:r": "pnpm --filter nihongo-speech-raycast dev",
+    "format": "biome format --write .",
+    "lint": "biome lint --write"
+  },
+  "keywords": ["chrome-extension", "japanese", "speech", "recognition"],
+  "author": "adeleke5140",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
+  }
 }
