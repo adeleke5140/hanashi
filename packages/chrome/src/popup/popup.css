@@ -29,20 +29,7 @@
   --shadow: inset 0 1px 0 oklch(1 0 0 / 0.2), inset 0 -1px 0 oklch(0 0 0 / 0.2),
     0 1px 2px oklch(0 0 0 / 0.2);
   --text-shadow: 0 1px rgb(0 11 15 / 40%);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: white;
-    --button-border: transparent;
-    --background: #141612;
-    --secondary: rgba(20, 22, 18, 0.5);
-    --border: rgba(253, 255, 121, 0.2);
-    --gradient-stop-1: rgba(253, 255, 121, 0.8);
-    --gradient-stop-2: rgba(253, 255, 121, 0.6);
-    --gradient-stop-3: rgba(253, 255, 121, 0.7);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
+  --radio-background: var(--secondary);
 }
 
 button {
@@ -115,7 +102,7 @@ button {
   position: relative;
   height: 20px;
   width: 20px;
-  background-color: var(--secondary);
+  background-color: var(--radio-background);
   border: 2px solid #ccc;
   border-radius: 50%;
   margin-right: 4px;
@@ -140,7 +127,7 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--button-border);
+  background: var(--button-border);
 }
 
 .custom-radio input[type="radio"]:checked + .radio-checkmark::after {
