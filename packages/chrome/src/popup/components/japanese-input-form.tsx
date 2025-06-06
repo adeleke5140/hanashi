@@ -68,7 +68,7 @@ export const JapaneseInputForm = ({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <textarea
-        className="rounded-xl text-base focus:outline-none focus:ring-1 focus:ring-[var(--button-border)] border border-[var(--border)] h-[144px] bg-[var(--background)] text-[var(--primary)] p-2 w-full resize-none"
+        className="rounded-xl text-base focus:outline-none focus-visible:ring-1 focus:ring-[var(--button-border)] border border-[var(--border)] h-[144px] bg-[var(--background)] text-[var(--primary)] p-2 w-full resize-none"
         rows={3}
         placeholder="日本語の文を入力..."
         value={text}
@@ -103,7 +103,7 @@ export const JapaneseInputForm = ({
       </div>
       <button
         type="submit"
-        className="focus:outline-none focus:ring-2 rounded-lg px-3 py-1 mt-2  disabled:opacity-50"
+        className="focus:outline-none focus-visible:ring-[3px] rounded-lg px-3 py-1.5 mt-2  disabled:opacity-50"
         // disabled={loading || !text.trim() || !hasApiKey}
       >
         {loading ? "生成中..." : "音声を生成"}
