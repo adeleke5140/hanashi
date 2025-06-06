@@ -88,7 +88,7 @@ const Popup = () => {
   };
 
   return (
-    <div className="p-4 rounded-lg text-white bg-[var(--background)] border w-[412.08px]">
+    <div className="p-4 text-white bg-[var(--background)] border w-[412.08px]">
       <Header
         showSettings={showSettings}
         setShowSettings={setShowSettings}
@@ -114,8 +114,9 @@ const Popup = () => {
 
       {error && (
         <ErrorUI error={error || "エラーが発生しました"} />
-      )}
-      {audioDataUrl && (
+    )}
+    <AudioPlayer preview={true}/>
+    {audioDataUrl && (
         <AudioPlayer
           src={audioDataUrl}
           autoPlay={true}
