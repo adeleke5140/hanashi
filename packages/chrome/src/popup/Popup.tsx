@@ -1,15 +1,13 @@
-import type React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../popup/popup.css";
 import AudioPlayer from "./audio-player";
-import { Header } from "./components/header";
 import { ApiSettings } from "./components/api-settings";
-import { JapaneseInputForm } from "./components/japanese-input-form";
 import { ErrorUI } from "./components/error";
+import { Header } from "./components/header";
+import { JapaneseInputForm } from "./components/japanese-input-form";
 
 const Popup = () => {
   const [audioDataUrl, setAudioDataUrl] = useState<string | null>(null);
-
   const [error, setError] = useState<string | null>(null);
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(
     null,
@@ -49,7 +47,7 @@ const Popup = () => {
   }, [audioElement]);
 
   const saveApiKey = () => {
-    if(!apiKey){
+    if (!apiKey) {
       return setError("Please enter your ElevenLabs API key first.");
     }
     if (apiKey.trim()) {
@@ -112,11 +110,9 @@ const Popup = () => {
         audioElement={audioElement}
       />
 
-      {error && (
-        <ErrorUI error={error || "エラーが発生しました"} />
-    )}
+      {error && <ErrorUI error={error || "エラーが発生しました"} />}
 
-    {audioDataUrl && (
+      {audioDataUrl && (
         <AudioPlayer
           src={audioDataUrl}
           autoPlay={true}
@@ -126,6 +122,5 @@ const Popup = () => {
     </div>
   );
 };
-
 
 export default Popup;

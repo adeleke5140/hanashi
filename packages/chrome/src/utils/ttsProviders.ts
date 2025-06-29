@@ -6,7 +6,6 @@ export interface TTSOptions {
 }
 
 export async function fetchTTS({ text, gender }: TTSOptions): Promise<Blob> {
-  // Choose provider here (stub: ElevenLabs)
   return fetchFromElevenLabs({ text, gender });
 }
 
@@ -25,15 +24,14 @@ const config = {
     speed: 0.9,
     stability: 0.5,
     similarity_boost: 0.75,
+    use_speaker_boost: true,
   },
 };
 
-// Example: ElevenLabs API integration
 async function fetchFromElevenLabs({
   text,
   gender,
 }: TTSOptions): Promise<Blob> {
-  // Get API key from Chrome storage (user-provided)
   const result = await chrome.storage.local.get(["elevenLabsApiKey"]);
   const apiKey = result.elevenLabsApiKey;
 
@@ -43,7 +41,7 @@ async function fetchFromElevenLabs({
     );
   }
 
-  const voiceId = gender === "male" ? Asahi : Morioki;
+  const voiceId = gender === "male" ? Asahi : Sakura;
   const url = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
   const response = await fetch(url, {
     method: "POST",
@@ -69,5 +67,3 @@ async function fetchFromElevenLabs({
   }
   return await response.blob();
 }
-
-// Add similar functions for OpenAI, Sesame AI, etc.
