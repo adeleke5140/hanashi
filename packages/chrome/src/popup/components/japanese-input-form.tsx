@@ -20,7 +20,10 @@ export const JapaneseInputForm = ({
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    chrome.storage.local
+    const chromeStorage = chrome?.storage;
+    if(!chromeStorage) return
+
+    chromeStorage?.local
       .get(["pendingText", "savedText", "savedGender", "savedAudioUrl"])
       .then((res) => {
         if (res.pendingText) {
@@ -41,12 +44,17 @@ export const JapaneseInputForm = ({
   }, [setAudioDataUrl]);
 
   useEffect(() => {
+    const chromeStorage = chrome?.storage as typeof chrome.storage;
+    if(!chromeStorage) return 
+    
     if (text) {
-      chrome.storage.local.set({ savedText: text });
+      chromeStorage.local.set({ savedText: text });
     }
   }, [text]);
 
   useEffect(() => {
+    const chromeStorage = chrome?.storage;
+    if(!chromeStorage) return 
     chrome.storage.local.set({ savedGender: gender });
   }, [gender]);
 
