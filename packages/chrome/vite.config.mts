@@ -25,7 +25,7 @@ const copyIconsPlugin = () => {
 export default defineConfig(({ mode }) => ({
   plugins: [react(), copyIconsPlugin()],
   server: {
-    open: "/popup.html",
+    open: mode === "development" ? "/overlay-dev.html" : "/popup.html",
   },
   test: {
     globals: true,
@@ -40,7 +40,9 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         popup_entry: "popup.html",
+        overlay_dev: "overlay-dev.html",
         background: "src/background/background.ts",
+        overlay: "src/content/overlay.ts",
       },
       output: {
         entryFileNames: "[name].js",
