@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="65px" height="68px" viewBox="0 0 65 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>group</title>
+<svg width="84px" height="86px" viewBox="0 0 84 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>blue-variant</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="98.5440341%" id="linearGradient-1">
+            <stop stop-color="#5C8FFF" offset="0%"></stop>
+            <stop stop-color="#3370FF" offset="51.2319712%"></stop>
+            <stop stop-color="#5289FF" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="80" height="80" rx="40"></rect>
+        <filter x="-4.4%" y="-5.6%" width="108.8%" height="111.2%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="0" dy="-1" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter2" in2="SourceAlpha" operator="out" result="shadowBlurOuter2"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.17072771 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter3"></feOffset>
+            <feComposite in="shadowOffsetOuter3" in2="SourceAlpha" operator="out" result="shadowOffsetOuter3"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.2 0" type="matrix" in="shadowOffsetOuter3" result="shadowMatrixOuter3"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter3"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="MacBook-Pro-14&quot;-Copy" transform="translate(-144, -449)">
-            <g id="group" transform="translate(144, 449)">
-                <rect id="Rectangle" fill="#1F221E" x="0" y="0" width="65" height="68"></rect>
-                <rect id="Rectangle" fill="#FDFF79" x="0" y="57" width="65" height="11"></rect>
+        <g id="Redesign" transform="translate(-663, -446)">
+            <g id="blue-variant" transform="translate(665, 449)">
+                <g id="Rectangle-Copy-2">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <rect stroke="#1F52F9" stroke-width="1" stroke-linejoin="square" fill="url(#linearGradient-1)" fill-rule="evenodd" x="0.5" y="0.5" width="79" height="79" rx="39.5"></rect>
+                </g>
+                <g id="play" transform="translate(21, 19)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M14.4767814,6.53797276 L33.3146112,18.1868996 C34.3722112,18.8425745 35.0105022,19.9971319 35,21.2352384 C34.9892362,22.4733448 34.3312084,23.6169227 33.262501,24.2545881 L14.4272767,35.4921023 C13.3200501,36.1525686 11.940551,36.1700272 10.8167358,35.5377966 C9.69292048,34.905566 8.99879096,33.7215353 9,32.4388519 L9,9.55499824 C9.00103133,8.26310269 9.7071599,7.0732798 10.8447482,6.44660992 C11.9823365,5.81994004 13.3725992,5.85491173 14.4767814,6.53797276 Z" id="Path"></path>
+                </g>
             </g>
         </g>
     </g>
