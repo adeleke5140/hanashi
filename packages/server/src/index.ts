@@ -1,7 +1,10 @@
-import { Hono } from "hono";
 import { serve } from "@hono/node-server";
+import "dotenv/config";
+import { Hono } from "hono";
+import { env } from "hono/adapter";
 import { cors } from "hono/cors";
-
+import { generateTransliteration } from "./lib/generate-text";
+import { voiceConfig } from "./lib/eleven-labs-config";
 const app = new Hono();
 
 app.use("*", cors());
@@ -13,21 +16,27 @@ interface TTSRequest {
   gender?: VoiceGender;
 }
 
-// Voice IDs from your existing setup
 const VOICES = {
-  male: "GKDaBI8TKSBJVhsCLD6n", // Asahi
-  female: "RBnMinrYKeccY3vaUxlZ", // Sakura
+  male: voiceConfig.male.asahi_id,
+  female: voiceConfig.female.sakura_id,
 };
 
 app.post("/tts", async (c) => {
   try {
+    const { ELEVENLABS_API_KEY } = env<{
+      ELEVENLABS_API_KEY: string;
+    }>(c);
     const { text, gender = "female" }: TTSRequest = await c.req.json();
 
     if (!text) {
       return c.json({ error: "Text is required" }, 400);
     }
 
-    const apiKey = process.env.ELEVENLABS_API_KEY;
+    const transliteration = await generateTransliteration(text);
+
+    const textForSpeech = transliteration.text ? transliteration.text : text;
+
+    const apiKey = ELEVENLABS_API_KEY as string;
     if (!apiKey) {
       return c.json({ error: "ElevenLabs API key not configured" }, 500);
     }
@@ -42,8 +51,9 @@ app.post("/tts", async (c) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        text: text,
+        text: textForSpeech,
         model_id: "eleven_multilingual_v2",
+        // this should be dynamic from the client
         voice_settings: {
           stability: 0.5,
           similarity_boost: gender === "male" ? 0.14 : 0.75,
@@ -78,7 +88,7 @@ app.get("/health", (c) => {
 
 const port = process.env.PORT ? Number.parseInt(process.env.PORT) : 3000;
 
-console.log(`Server is running on port ${port}`);
+console.log(`Server is running on port ${port}🚀`);
 
 serve({
   fetch: app.fetch,
