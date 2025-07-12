@@ -7,7 +7,17 @@ module.exports = {
         secondary: "rgba(20, 22, 18, 1)",
       },
       fontFamily: {
-        mono: ["Berkeley Mono", "Fira Code", "ui-monospace", "monospace"],
+        mono: [
+          "Berkeley Mono",
+          "Fira Code",
+          "JetBrains Mono",
+          "Caskaydia Cove",
+          "Iosevka",
+          "ui-monospace",
+          "monospace",
+        ],
+        stick: ["Stick", "ui-monospace", "monospace"],
+        kaisei: ["Kaisei Tokumin", "serif"],
       },
     },
   },
