@@ -22,7 +22,7 @@ const Popup = () => {
   }, [audioElement]);
 
   return (
-    <main className="p-4 text-white bg-gray-100 border w-[343.08px]">
+    <main className="p-4 text-white bg-gray-100/50 border w-[343.08px]">
       <Header showSettings={showSettings} setShowSettings={setShowSettings} />
 
       <JapaneseInputForm

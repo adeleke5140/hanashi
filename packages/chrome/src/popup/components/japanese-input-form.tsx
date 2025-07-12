@@ -64,7 +64,7 @@ export const JapaneseInputForm = ({
     <form onSubmit={handleSubmit} className="flex flex-col relative gap-2" ref={formRef}>
      
       <textarea
-        className={`rounded-xl  bg-white text-base  focus:outline-none focus-visible:ring-1 focus:ring-[var(--button-border)] border border-[var(--border)] h-[144px] bg-[var(--background)] text-[var(--primary)] p-2 w-full resize-none ${fontFamily}`}
+        className={`rounded-xl  bg-white text-base  focus:outline-none focus-visible:ring-2 focus:ring-[var(--button-border)] border border-[var(--border)] h-[144px] bg-[var(--background)] text-[var(--primary)] p-2 w-full resize-none ${fontFamily}`}
         rows={3}
         placeholder="日本語の文を入力..."
         value={text}
@@ -77,12 +77,12 @@ export const JapaneseInputForm = ({
         }}
       />
        <div className="flex gap-2 absolute bottom-28 right-4 ml-auto">
-        <button type="button" className={`font font-stick rounded-lg p-2 ${fontFamily === "font-stick" ? "outline outline-2 outline-[var(--button-border)]" : ""}`} onClick={() => setFontFamily("font-stick")}>
+        <button type="button" className={`font font-stick rounded-lg p-2 ${fontFamily === "font-stick" ? "outline outline-2 outline-gray-300" : ""}`} onClick={() => setFontFamily("font-stick")}>
           Aa
         </button>
         <button
           type="button"
-          className={`font-kaisei font rounded-lg p-2 ${fontFamily === "font-kaisei" ? "outline outline-2 outline-[var(--button-border)]" : ""}`}
+          className={`font-kaisei font rounded-lg p-2 ${fontFamily === "font-kaisei" ? "outline outline-2 outline-gray-300" : ""}`}
           onClick={() => setFontFamily("font-kaisei")}
         >
           Aa</button>
@@ -116,7 +116,7 @@ export const JapaneseInputForm = ({
       <button
         type="submit"
         className="focus:outline-none font-stick text-base focus-visible:ring-[3px] rounded-lg px-3 py-1.5 mt-2  disabled:opacity-50"
-        disabled={loading || !text.trim()}
+        disabled={loading}
       >
         {loading ? "Creating..." : "Create Audio"}
       </button>

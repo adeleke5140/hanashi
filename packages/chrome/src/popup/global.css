@@ -123,7 +123,7 @@ button {
   width: 20px;
   background-color: var(--radio-background);
   border: 2px solid #ccc;
-  border-radius: 50%;
+  border-radius: 8px;
   margin-right: 4px;
   transition: all 0.2s ease-out;
 }
