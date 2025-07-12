@@ -1,8 +1,8 @@
-# Nihongo Speech
+# Hanashi
 
 A Chrome extension for Japanese speech recognition and text-to-speech functionality with realistic voices.
 
-## 📦 Project Structure
+## Project Structure
 
 This is a monorepo containing multiple packages:
 
@@ -15,7 +15,7 @@ nihongo-speech/
 └── pnpm-workspace.yaml  # Workspace configuration
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -90,7 +90,7 @@ pnpm lint
 - **Code Quality**: Biome (formatting & linting)
 - **Package Manager**: pnpm (workspace)
 
-## 📋 Available Scripts
+## Available Scripts
 
 | Script | Description |
 |--------|-------------|
@@ -101,7 +101,7 @@ pnpm lint
 | `pnpm format` | Format code with Biome |
 | `pnpm lint` | Lint code with Biome |
 
-## 🔧 Chrome Extension Setup
+## Chrome Extension Setup
 
 1. Build the extension: `pnpm build`
 2. Open Chrome and navigate to `chrome://extensions/`
