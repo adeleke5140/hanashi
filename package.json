@@ -1,12 +1,12 @@
 {
-  "name": "nihongo-speech",
+  "name": "hanashi",
   "version": "0.0.1",
   "description": "A Chrome extension for Japanese speech recognition",
   "scripts": {
-    "build": "pnpm --filter nihongo-speech-chrome build",
-    "dev": "pnpm --filter nihongo-speech-chrome dev",
-    "build:r": "pnpm --filter nihongo-speech-raycast build",
-    "dev:r": "pnpm --filter nihongo-speech-raycast dev",
+    "build": "pnpm --filter hanashi-chrome build",
+    "dev": "pnpm --filter hanashi-chrome dev",
+    "build:r": "pnpm --filter hanashi-raycast build",
+    "dev:r": "pnpm --filter hanashi-raycast dev",
     "format": "biome format --write .",
     "lint": "biome lint --write"
   },
