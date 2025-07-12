@@ -32,7 +32,7 @@
             <g id="blue-variant" transform="translate(665, 449)">
                 <g id="Rectangle-Copy-2">
                     <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
-                    <rect stroke="#1F52F9" stroke-width="1" stroke-linejoin="square" fill="url(#linearGradient-1)" fill-rule="evenodd" x="0.5" y="0.5" width="79" height="79" rx="39.5"></rect>
+                    <rect stroke="#1F52F9" stroke-width="1" fill="url(#linearGradient-1)" fill-rule="evenodd" x="0.5" y="0.5" width="79" height="79" rx="39.5"></rect>
                 </g>
                 <g id="play" transform="translate(21, 19)" fill="#FFFFFF" fill-rule="nonzero">
                     <path d="M14.4767814,6.53797276 L33.3146112,18.1868996 C34.3722112,18.8425745 35.0105022,19.9971319 35,21.2352384 C34.9892362,22.4733448 34.3312084,23.6169227 33.262501,24.2545881 L14.4272767,35.4921023 C13.3200501,36.1525686 11.940551,36.1700272 10.8167358,35.5377966 C9.69292048,34.905566 8.99879096,33.7215353 9,32.4388519 L9,9.55499824 C9.00103133,8.26310269 9.7071599,7.0732798 10.8447482,6.44660992 C11.9823365,5.81994004 13.3725992,5.85491173 14.4767814,6.53797276 Z" id="Path"></path>
