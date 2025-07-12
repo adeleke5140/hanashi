@@ -4,6 +4,7 @@
   "description": "A Chrome extension for Japanese speech recognition",
   "scripts": {
     "build": "pnpm --filter hanashi-chrome build",
+    "test": "pnpm --filter hanashi-chrome test",
     "dev": "pnpm --filter hanashi-chrome dev",
     "build:r": "pnpm --filter hanashi-raycast build",
     "dev:r": "pnpm --filter hanashi-raycast dev",
