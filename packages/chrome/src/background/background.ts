@@ -1,5 +1,4 @@
-// Ensure @types/chrome is installed in your devDependencies
-import { fetchTTS, type TTSOptions } from "../utils/ttsProviders";
+import { fetchResponse, type TTSOptions } from "../utils/tts-provider";
 
 async function blobToDataURL(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -16,10 +15,10 @@ async function blobToDataURL(blob: Blob): Promise<string> {
   });
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === "TTS_REQUEST") {
     const options: TTSOptions = message.payload;
-    fetchTTS(options)
+    fetchResponse(options)
       .then((blob) => blobToDataURL(blob))
       .then((dataUrl) => {
         sendResponse({ success: true, dataUrl });
@@ -43,22 +42,13 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === ID && info.selectionText && tab?.id) {
-    chrome.scripting
-      .executeScript({
-        target: { tabId: tab.id },
-        files: ["overlay.js"],
+    chrome.tabs
+      .sendMessage(tab.id, {
+        type: "SHOW_TTS_OVERLAY",
+        text: info.selectionText,
       })
-      .then(() => {
-        if (tab.id) {
-          chrome.tabs.sendMessage(tab.id, {
-            type: "SHOW_TTS_OVERLAY",
-            text: info.selectionText,
-          });
-        }
-      })
-
       .catch((error) => {
-        console.error("Failed to inject script or send message:", error);
+        console.error("Failed to send message:", error);
         chrome.storage.local.set({ pendingText: info.selectionText });
         chrome.action.openPopup();
       });
