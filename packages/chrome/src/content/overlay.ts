@@ -497,4 +497,4 @@ class NihongoSpeechOverlay {
   }
 }
 
-const nihongoOverlay = new NihongoSpeechOverlay();
+const _nihongoOverlay = new NihongoSpeechOverlay();
