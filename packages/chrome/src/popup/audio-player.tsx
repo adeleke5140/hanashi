@@ -111,7 +111,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div className="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 mt-4">
-      {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       {src && !preview && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="flex flex-col gap-4">
