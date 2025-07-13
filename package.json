@@ -9,14 +9,9 @@
     "build:r": "pnpm --filter hanashi-raycast build",
     "dev:r": "pnpm --filter hanashi-raycast dev",
     "format": "biome format --write .",
-    "lint": "biome lint --write"
+    "lint": "biome lint"
   },
-  "keywords": [
-    "chrome-extension",
-    "japanese",
-    "speech",
-    "recognition"
-  ],
+  "keywords": ["chrome-extension", "japanese", "speech", "recognition"],
   "author": "adeleke5140",
   "license": "GPL-3.0",
   "devDependencies": {
