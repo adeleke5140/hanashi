@@ -111,7 +111,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div className="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 mt-4">
-      {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       {src && !preview && <audio ref={audioRef} src={src} preload="metadata" />}
 
       <div className="flex flex-col gap-4">
@@ -153,7 +152,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             )}
           </button>
           <div className="flex flex-1 items-center gap-3">
-            <span className="text-[var(--primary)] text-sm font-mono min-w-[2.5rem]">
+            <span className="text-[var(--primary)] text-sm  min-w-[2.5rem]">
               {formatTime(currentTime)}
             </span>
 
@@ -171,7 +170,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
               />
             </div>
 
-            <span className="text-[var(--primary)] text-sm font-mono min-w-[2.5rem]">
+            <span className="text-[var(--primary)] text-sm  min-w-[2.5rem]">
               {formatTime(duration)}
             </span>
           </div>
@@ -233,7 +232,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             />
           </div>
 
-          <span className="text-[var(--primary)] text-sm font-mono min-w-[1.5rem] text-right">
+          <span className="text-[var(--primary)] text-sm  min-w-[1.5rem] text-right">
             {Math.round(volume * 100)}
           </span>
         </div>

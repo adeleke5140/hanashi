@@ -1,16 +1,18 @@
 {
-  "name": "nihongo-speech-chrome",
-  "version": "1.1.0",
+  "name": "hanashi-chrome",
+  "version": "1.2.0",
   "description": "Chrome extension for Japanese TTS with realistic voices.",
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode development",
+    "build:watch": "vite build --mode development --watch",
     "build:prod": "vite build --mode production",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
   "dependencies": {
+    "chrome-types": "^0.1.357",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
