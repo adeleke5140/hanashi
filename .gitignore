@@ -6,5 +6,3 @@ dist
 .env.production
 *.zip
 .env.development
-
-.
