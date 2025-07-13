@@ -61,8 +61,11 @@ export const JapaneseInputForm = ({
     );
   };
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col relative gap-2" ref={formRef}>
-     
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col relative gap-2"
+      ref={formRef}
+    >
       <textarea
         className={`rounded-xl  bg-white text-base  focus:outline-none focus-visible:ring-2 focus:ring-[var(--button-border)] border border-[var(--border)] h-[144px] bg-[var(--background)] text-[var(--primary)] p-2 w-full resize-none ${fontFamily}`}
         rows={3}
@@ -71,13 +74,17 @@ export const JapaneseInputForm = ({
         onChange={(e) => setText(e.target.value)}
         required
         onKeyDown={async (e) => {
-          if(e.metaKey && e.key === "Enter"){
+          if (e.metaKey && e.key === "Enter") {
             await handleSubmit(e);
           }
         }}
       />
-       <div className="flex gap-2 absolute bottom-28 right-4 ml-auto">
-        <button type="button" className={`font font-stick rounded-lg p-2 ${fontFamily === "font-stick" ? "outline outline-2 outline-gray-300" : ""}`} onClick={() => setFontFamily("font-stick")}>
+      <div className="flex gap-2 absolute bottom-28 right-4 ml-auto">
+        <button
+          type="button"
+          className={`font font-stick rounded-lg p-2 ${fontFamily === "font-stick" ? "outline outline-2 outline-gray-300" : ""}`}
+          onClick={() => setFontFamily("font-stick")}
+        >
           Aa
         </button>
         <button
@@ -85,7 +92,8 @@ export const JapaneseInputForm = ({
           className={`font-kaisei font rounded-lg p-2 ${fontFamily === "font-kaisei" ? "outline outline-2 outline-gray-300" : ""}`}
           onClick={() => setFontFamily("font-kaisei")}
         >
-          Aa</button>
+          Aa
+        </button>
       </div>
       <div className="flex gap-4 mt-2 items-center">
         <label className="custom-radio font-stick text-[var(--primary)] flex items-center gap-1">

@@ -11,7 +11,12 @@
     "format": "biome format --write .",
     "lint": "biome lint --write"
   },
-  "keywords": ["chrome-extension", "japanese", "speech", "recognition"],
+  "keywords": [
+    "chrome-extension",
+    "japanese",
+    "speech",
+    "recognition"
+  ],
   "author": "adeleke5140",
   "license": "GPL-3.0",
   "devDependencies": {

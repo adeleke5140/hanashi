@@ -8,7 +8,10 @@ export interface TTSOptions {
 export async function fetchResponse({
   text,
   gender,
-}: { text: string; gender: VoiceGender }) {
+}: {
+  text: string;
+  gender: VoiceGender;
+}) {
   const response = await fetch("http://localhost:3000/tts", {
     method: "POST",
     headers: {
