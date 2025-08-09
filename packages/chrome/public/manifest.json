@@ -1,38 +1,38 @@
 {
-  "manifest_version": 3,
-  "name": "Nihongo Speech",
-  "version": "1.1.0",
-  "description": "Convert Japanese sentences to realistic male and female speech using advanced TTS APIs.",
-  "icons": {
-    "16": "icon-16.png",
-    "48": "icon-48.png",
-    "128": "icon-128.png"
-  },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon-16.png",
-      "48": "icon-48.png",
-      "128": "icon-128.png"
-    }
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
-  "host_permissions": [
-    "https://api.elevenlabs.io/*",
-    "http://localhost:*/*",
-    "http://127.0.0.1:*/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["overlay.js"],
-      "run_at": "document_end"
-    }
-  ],
-  "web_accessible_resources": [
-    { "resources": ["fonts/*"], "matches": ["https://*/*"] }
-  ]
+	"manifest_version": 3,
+	"name": "Nihongo Speech",
+	"version": "1.1.0",
+	"description": "Convert Japanese sentences to realistic male and female speech using advanced TTS APIs.",
+	"icons": {
+		"16": "icon-16.png",
+		"48": "icon-48.png",
+		"128": "icon-128.png"
+	},
+	"action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "icon-16.png",
+			"48": "icon-48.png",
+			"128": "icon-128.png"
+		}
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+	"host_permissions": [
+		"https://api.elevenlabs.io/*",
+		"http://localhost:*/*",
+		"http://127.0.0.1:*/*"
+	],
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["overlay.js"],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [
+		{ "resources": ["fonts/*"], "matches": ["https://*/*"] }
+	]
 }
