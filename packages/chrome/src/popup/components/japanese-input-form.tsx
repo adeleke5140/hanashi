@@ -6,7 +6,6 @@ export const JapaneseInputForm = ({
 	audioElement,
 }: {
 	setError: (error: string | null) => void;
-	setShowSettings: (show: boolean) => void;
 	setAudioDataUrl: (audioDataUrl: string | null) => void;
 	audioElement: HTMLAudioElement | null;
 }) => {

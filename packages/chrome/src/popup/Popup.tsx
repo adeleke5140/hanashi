@@ -11,7 +11,7 @@ const Popup = () => {
 	const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(
 		null,
 	);
-	const [showSettings, setShowSettings] = useState(false);
+
 
 	useEffect(() => {
 		return () => {
@@ -27,7 +27,7 @@ const Popup = () => {
 
 			<JapaneseInputForm
 				setError={setError}
-				setShowSettings={setShowSettings}
+			
 				setAudioDataUrl={setAudioDataUrl}
 				audioElement={audioElement}
 			/>

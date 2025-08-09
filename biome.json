@@ -12,7 +12,8 @@
 			"!**/dist",
 			"!**/build",
 			"!**/node_modules",
-			"!**/raycast"
+			"!**/raycast",
+			"!**/*.d.ts"
 		]
 	},
 	"formatter": {
