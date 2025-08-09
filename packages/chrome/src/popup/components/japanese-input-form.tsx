@@ -108,7 +108,7 @@ export const JapaneseInputForm = ({
           <span className="radio-checkmark" />
           女性
         </label>
-        <label className="custom-radio font-stick text-[var(--primary)] text-sm flex items-center gap-1">
+        <label className="custom-radio font-stick text-[var(--primary)]  text-sm flex items-center gap-1">
           <input
             id="male-gender"
             type="radio"
