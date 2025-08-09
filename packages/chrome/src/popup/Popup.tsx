@@ -6,43 +6,43 @@ import { Header } from "./components/header";
 import { JapaneseInputForm } from "./components/japanese-input-form";
 
 const Popup = () => {
-  const [audioDataUrl, setAudioDataUrl] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(
-    null,
-  );
-  const [showSettings, setShowSettings] = useState(false);
+	const [audioDataUrl, setAudioDataUrl] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>(null);
+	const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(
+		null,
+	);
 
-  useEffect(() => {
-    return () => {
-      if (audioElement) {
-        audioElement.pause();
-      }
-    };
-  }, [audioElement]);
 
-  return (
-    <main className="p-4 text-white bg-gray-100/50 border w-[343.08px]">
-      <Header showSettings={showSettings} setShowSettings={setShowSettings} />
+	useEffect(() => {
+		return () => {
+			if (audioElement) {
+				audioElement.pause();
+			}
+		};
+	}, [audioElement]);
 
-      <JapaneseInputForm
-        setError={setError}
-        setShowSettings={setShowSettings}
-        setAudioDataUrl={setAudioDataUrl}
-        audioElement={audioElement}
-      />
+	return (
+		<main className="p-4 text-white bg-gray-100/50 border w-[343.08px]">
+			<Header />
 
-      {error && <ErrorUI error={error || "エラーが発生しました"} />}
+			<JapaneseInputForm
+				setError={setError}
+			
+				setAudioDataUrl={setAudioDataUrl}
+				audioElement={audioElement}
+			/>
 
-      {audioDataUrl && (
-        <AudioPlayer
-          src={audioDataUrl}
-          autoPlay={true}
-          onAudioElement={setAudioElement}
-        />
-      )}
-    </main>
-  );
+			{error && <ErrorUI error={error || "エラーが発生しました"} />}
+
+			{audioDataUrl && (
+				<AudioPlayer
+					src={audioDataUrl}
+					autoPlay={true}
+					onAudioElement={setAudioElement}
+				/>
+			)}
+		</main>
+	);
 };
 
 export default Popup;

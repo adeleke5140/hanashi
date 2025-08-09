@@ -1,23 +1,26 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+	"compilerOptions": {
+		/* Base Options: */
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "es2022",
+		"verbatimModuleSyntax": false,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+		/* Strictness */
+		"noImplicitAny": false,
+		"noImplicitThis": true,
+		"strictNullChecks": false,
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		/* If NOT transpiling with TypeScript: */
+		"moduleResolution": "Bundler",
+		"module": "es2022",
+		"noEmit": true,
+		"lib": ["es2022"],
+		"types": ["./worker-configuration.d.ts", "@types/node"]
+	},
+	"exclude": ["node_modules", "dist", "tests"],
+	"include": ["src", "worker-configuration.d.ts"]
 }

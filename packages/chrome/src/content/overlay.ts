@@ -1,36 +1,36 @@
 interface TTSOptions {
-  text: string;
-  gender: "male" | "female";
+	text: string;
+	gender: "male" | "female";
 }
 
 interface TTSResponse {
-  success: boolean;
-  dataUrl?: string;
-  error?: string;
+	success: boolean;
+	dataUrl?: string;
+	error?: string;
 }
 
 class NihongoSpeechOverlay {
-  private overlayElement: HTMLDivElement | null = null;
-  private audioElement: HTMLAudioElement | null = null;
-  private currentText = "";
-  private currentGender: "male" | "female" = "male";
+	private overlayElement: HTMLDivElement | null = null;
+	private audioElement: HTMLAudioElement | null = null;
+	private currentText = "";
+	private currentGender: "male" | "female" = "male";
 
-  constructor() {
-    this.init();
-  }
+	constructor() {
+		this.init();
+	}
 
-  private init(): void {
-    this.createOverlay();
-    this.setupMessageListener();
-    this.loadSettings();
-  }
+	private init(): void {
+		this.createOverlay();
+		this.setupMessageListener();
+		this.loadSettings();
+	}
 
-  private createOverlay(): void {
-    if (this.overlayElement) return;
+	private createOverlay(): void {
+		if (this.overlayElement) return;
 
-    this.overlayElement = document.createElement("div");
-    this.overlayElement.id = "nihongo-speech-overlay";
-    this.overlayElement.innerHTML = `
+		this.overlayElement = document.createElement("div");
+		this.overlayElement.id = "nihongo-speech-overlay";
+		this.overlayElement.innerHTML = `
       <div class="nihongo-overlay-container">
         <div class="nihongo-overlay-header">
           <h3>日本語音声</h3>
@@ -65,17 +65,17 @@ class NihongoSpeechOverlay {
       </div>
     `;
 
-    this.addStyles();
-    this.setupEventListeners();
-    document.body.appendChild(this.overlayElement);
-  }
+		this.addStyles();
+		this.setupEventListeners();
+		document.body.appendChild(this.overlayElement);
+	}
 
-  private addStyles(): void {
-    if (document.getElementById("nihongo-overlay-styles")) return;
+	private addStyles(): void {
+		if (document.getElementById("nihongo-overlay-styles")) return;
 
-    const style = document.createElement("style");
-    style.id = "nihongo-overlay-styles";
-    style.textContent = `
+		const style = document.createElement("style");
+		style.id = "nihongo-overlay-styles";
+		style.textContent = `
       #nihongo-speech-overlay {
         position: fixed;
         top: 20px;
@@ -205,296 +205,296 @@ class NihongoSpeechOverlay {
         margin-top: 8px;
       }
     `;
-    document.head.appendChild(style);
-  }
+		document.head.appendChild(style);
+	}
 
-  private setupEventListeners(): void {
-    if (!this.overlayElement) return;
+	private setupEventListeners(): void {
+		if (!this.overlayElement) return;
 
-    const closeBtn = this.overlayElement.querySelector(".nihongo-close-btn");
-    const generateBtn = this.overlayElement.querySelector(
-      ".nihongo-generate-btn",
-    );
-    const playBtn = this.overlayElement.querySelector(".nihongo-play-btn");
-    const pauseBtn = this.overlayElement.querySelector(".nihongo-pause-btn");
-    const genderRadios = this.overlayElement.querySelectorAll(
-      ".nihongo-gender-radio",
-    );
+		const closeBtn = this.overlayElement.querySelector(".nihongo-close-btn");
+		const generateBtn = this.overlayElement.querySelector(
+			".nihongo-generate-btn",
+		);
+		const playBtn = this.overlayElement.querySelector(".nihongo-play-btn");
+		const pauseBtn = this.overlayElement.querySelector(".nihongo-pause-btn");
+		const genderRadios = this.overlayElement.querySelectorAll(
+			".nihongo-gender-radio",
+		);
 
-    closeBtn?.addEventListener("click", () => this.hide());
-    generateBtn?.addEventListener("click", () => this.generateSpeech());
-    playBtn?.addEventListener("click", () => this.playAudio());
-    pauseBtn?.addEventListener("click", () => this.pauseAudio());
+		closeBtn?.addEventListener("click", () => this.hide());
+		generateBtn?.addEventListener("click", () => this.generateSpeech());
+		playBtn?.addEventListener("click", () => this.playAudio());
+		pauseBtn?.addEventListener("click", () => this.pauseAudio());
 
-    genderRadios.forEach((radio) => {
-      radio.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.checked) {
-          this.currentGender = target.value as "male" | "female";
-          this.saveSettings();
-        }
-      });
-    });
-  }
+		genderRadios.forEach((radio) => {
+			radio.addEventListener("change", (e) => {
+				const target = e.target as HTMLInputElement;
+				if (target.checked) {
+					this.currentGender = target.value as "male" | "female";
+					this.saveSettings();
+				}
+			});
+		});
+	}
 
-  private setupMessageListener(): void {
-    chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-      if (message.type === "SHOW_TTS_OVERLAY") {
-        this.showWithText(message.text);
-        sendResponse({ success: true });
-      }
-      return true;
-    });
-  }
+	private setupMessageListener(): void {
+		chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+			if (message.type === "SHOW_TTS_OVERLAY") {
+				this.showWithText(message.text);
+				sendResponse({ success: true });
+			}
+			return true;
+		});
+	}
 
-  private async loadSettings(): Promise<void> {
-    try {
-      const result = await chrome.storage.local.get(["savedGender"]);
-      if (result.savedGender) {
-        this.currentGender = result.savedGender;
-        this.updateGenderSelection();
-      }
-    } catch (error) {
-      console.warn("Failed to load settings:", error);
-    }
-  }
+	private async loadSettings(): Promise<void> {
+		try {
+			const result = await chrome.storage.local.get(["savedGender"]);
+			if (result.savedGender) {
+				this.currentGender = result.savedGender;
+				this.updateGenderSelection();
+			}
+		} catch (error) {
+			console.warn("Failed to load settings:", error);
+		}
+	}
 
-  private async saveSettings(): Promise<void> {
-    try {
-      await chrome.storage.local.set({ savedGender: this.currentGender });
-    } catch (error) {
-      console.warn("Failed to save settings:", error);
-    }
-  }
+	private async saveSettings(): Promise<void> {
+		try {
+			await chrome.storage.local.set({ savedGender: this.currentGender });
+		} catch (error) {
+			console.warn("Failed to save settings:", error);
+		}
+	}
 
-  private updateGenderSelection(): void {
-    if (!this.overlayElement) return;
+	private updateGenderSelection(): void {
+		if (!this.overlayElement) return;
 
-    const genderRadios = this.overlayElement.querySelectorAll(
-      ".nihongo-gender-radio",
-    ) as NodeListOf<HTMLInputElement>;
-    genderRadios.forEach((radio) => {
-      radio.checked = radio.value === this.currentGender;
-    });
-  }
+		const genderRadios = this.overlayElement.querySelectorAll(
+			".nihongo-gender-radio",
+		) as NodeListOf<HTMLInputElement>;
+		genderRadios.forEach((radio) => {
+			radio.checked = radio.value === this.currentGender;
+		});
+	}
 
-  public showWithText(text: string): void {
-    this.currentText = text;
-    this.updateTextDisplay();
-    this.show();
-  }
+	public showWithText(text: string): void {
+		this.currentText = text;
+		this.updateTextDisplay();
+		this.show();
+	}
 
-  public show(): void {
-    if (!this.overlayElement) return;
+	public show(): void {
+		if (!this.overlayElement) return;
 
-    this.overlayElement.style.display = "block";
-    this.clearError();
-  }
+		this.overlayElement.style.display = "block";
+		this.clearError();
+	}
 
-  public hide(): void {
-    if (!this.overlayElement) return;
+	public hide(): void {
+		if (!this.overlayElement) return;
 
-    this.overlayElement.style.display = "none";
-    this.stopAudio();
-  }
+		this.overlayElement.style.display = "none";
+		this.stopAudio();
+	}
 
-  private updateTextDisplay(): void {
-    if (!this.overlayElement) return;
+	private updateTextDisplay(): void {
+		if (!this.overlayElement) return;
 
-    const textElement = this.overlayElement.querySelector(".nihongo-text");
-    if (textElement) {
-      textElement.textContent = this.currentText;
-    }
-  }
+		const textElement = this.overlayElement.querySelector(".nihongo-text");
+		if (textElement) {
+			textElement.textContent = this.currentText;
+		}
+	}
 
-  private async generateSpeech(): Promise<void> {
-    if (!this.currentText.trim()) {
-      this.showError("テキストが入力されていません");
-      return;
-    }
+	private async generateSpeech(): Promise<void> {
+		if (!this.currentText.trim()) {
+			this.showError("テキストが入力されていません");
+			return;
+		}
 
-    this.showLoading(true);
-    this.clearError();
-    this.hideAudioControls();
+		this.showLoading(true);
+		this.clearError();
+		this.hideAudioControls();
 
-    try {
-      const response = await this.requestTTS({
-        text: this.currentText,
-        gender: this.currentGender,
-      });
+		try {
+			const response = await this.requestTTS({
+				text: this.currentText,
+				gender: this.currentGender,
+			});
 
-      if (response.success && response.dataUrl) {
-        this.setupAudio(response.dataUrl);
-        this.showAudioControls();
-      } else {
-        this.showError(response.error || "Unknown error occurred");
-      }
-    } catch (error) {
-      this.showError(
-        error instanceof Error ? error.message : "Failed to generate speech",
-      );
-    } finally {
-      this.showLoading(false);
-    }
-  }
+			if (response.success && response.dataUrl) {
+				this.setupAudio(response.dataUrl);
+				this.showAudioControls();
+			} else {
+				this.showError(response.error || "Unknown error occurred");
+			}
+		} catch (error) {
+			this.showError(
+				error instanceof Error ? error.message : "Failed to generate speech",
+			);
+		} finally {
+			this.showLoading(false);
+		}
+	}
 
-  private requestTTS(options: TTSOptions): Promise<TTSResponse> {
-    return new Promise((resolve) => {
-      chrome.runtime.sendMessage(
-        {
-          type: "TTS_REQUEST",
-          payload: options,
-        },
-        (response) => {
-          if (chrome.runtime.lastError) {
-            resolve({
-              success: false,
-              error: chrome.runtime.lastError.message,
-            });
-          } else {
-            resolve(response);
-          }
-        },
-      );
-    });
-  }
+	private requestTTS(options: TTSOptions): Promise<TTSResponse> {
+		return new Promise((resolve) => {
+			chrome.runtime.sendMessage(
+				{
+					type: "TTS_REQUEST",
+					payload: options,
+				},
+				(response) => {
+					if (chrome.runtime.lastError) {
+						resolve({
+							success: false,
+							error: chrome.runtime.lastError.message,
+						});
+					} else {
+						resolve(response);
+					}
+				},
+			);
+		});
+	}
 
-  private setupAudio(dataUrl: string): void {
-    this.stopAudio();
+	private setupAudio(dataUrl: string): void {
+		this.stopAudio();
 
-    this.audioElement = new Audio(dataUrl);
-    this.audioElement.addEventListener("ended", () => {
-      this.updatePlayPauseButtons(false);
-    });
-    this.audioElement.addEventListener("error", () => {
-      this.showError("Audio playback failed");
-    });
-  }
+		this.audioElement = new Audio(dataUrl);
+		this.audioElement.addEventListener("ended", () => {
+			this.updatePlayPauseButtons(false);
+		});
+		this.audioElement.addEventListener("error", () => {
+			this.showError("Audio playback failed");
+		});
+	}
 
-  private playAudio(): void {
-    if (this.audioElement) {
-      this.audioElement
-        .play()
-        .then(() => {
-          this.updatePlayPauseButtons(true);
-        })
-        .catch(() => {
-          this.showError("Failed to play audio");
-        });
-    }
-  }
+	private playAudio(): void {
+		if (this.audioElement) {
+			this.audioElement
+				.play()
+				.then(() => {
+					this.updatePlayPauseButtons(true);
+				})
+				.catch(() => {
+					this.showError("Failed to play audio");
+				});
+		}
+	}
 
-  private pauseAudio(): void {
-    if (this.audioElement) {
-      this.audioElement.pause();
-      this.updatePlayPauseButtons(false);
-    }
-  }
+	private pauseAudio(): void {
+		if (this.audioElement) {
+			this.audioElement.pause();
+			this.updatePlayPauseButtons(false);
+		}
+	}
 
-  private stopAudio(): void {
-    if (this.audioElement) {
-      this.audioElement.pause();
-      this.audioElement.currentTime = 0;
-      this.audioElement = null;
-      this.updatePlayPauseButtons(false);
-    }
-  }
+	private stopAudio(): void {
+		if (this.audioElement) {
+			this.audioElement.pause();
+			this.audioElement.currentTime = 0;
+			this.audioElement = null;
+			this.updatePlayPauseButtons(false);
+		}
+	}
 
-  private updatePlayPauseButtons(isPlaying: boolean): void {
-    if (!this.overlayElement) return;
+	private updatePlayPauseButtons(isPlaying: boolean): void {
+		if (!this.overlayElement) return;
 
-    const playBtn = this.overlayElement.querySelector(
-      ".nihongo-play-btn",
-    ) as HTMLElement;
-    const pauseBtn = this.overlayElement.querySelector(
-      ".nihongo-pause-btn",
-    ) as HTMLElement;
+		const playBtn = this.overlayElement.querySelector(
+			".nihongo-play-btn",
+		) as HTMLElement;
+		const pauseBtn = this.overlayElement.querySelector(
+			".nihongo-pause-btn",
+		) as HTMLElement;
 
-    if (playBtn && pauseBtn) {
-      playBtn.style.display = isPlaying ? "none" : "inline-block";
-      pauseBtn.style.display = isPlaying ? "inline-block" : "none";
-    }
-  }
+		if (playBtn && pauseBtn) {
+			playBtn.style.display = isPlaying ? "none" : "inline-block";
+			pauseBtn.style.display = isPlaying ? "inline-block" : "none";
+		}
+	}
 
-  private showAudioControls(): void {
-    if (!this.overlayElement) return;
+	private showAudioControls(): void {
+		if (!this.overlayElement) return;
 
-    const playBtn = this.overlayElement.querySelector(
-      ".nihongo-play-btn",
-    ) as HTMLElement;
-    if (playBtn) {
-      playBtn.style.display = "inline-block";
-    }
-  }
+		const playBtn = this.overlayElement.querySelector(
+			".nihongo-play-btn",
+		) as HTMLElement;
+		if (playBtn) {
+			playBtn.style.display = "inline-block";
+		}
+	}
 
-  private hideAudioControls(): void {
-    if (!this.overlayElement) return;
+	private hideAudioControls(): void {
+		if (!this.overlayElement) return;
 
-    const playBtn = this.overlayElement.querySelector(
-      ".nihongo-play-btn",
-    ) as HTMLElement;
-    const pauseBtn = this.overlayElement.querySelector(
-      ".nihongo-pause-btn",
-    ) as HTMLElement;
+		const playBtn = this.overlayElement.querySelector(
+			".nihongo-play-btn",
+		) as HTMLElement;
+		const pauseBtn = this.overlayElement.querySelector(
+			".nihongo-pause-btn",
+		) as HTMLElement;
 
-    if (playBtn) playBtn.style.display = "none";
-    if (pauseBtn) pauseBtn.style.display = "none";
-  }
+		if (playBtn) playBtn.style.display = "none";
+		if (pauseBtn) pauseBtn.style.display = "none";
+	}
 
-  private showLoading(show: boolean): void {
-    if (!this.overlayElement) return;
+	private showLoading(show: boolean): void {
+		if (!this.overlayElement) return;
 
-    const loadingElement = this.overlayElement.querySelector(
-      ".nihongo-loading",
-    ) as HTMLElement;
-    const generateBtn = this.overlayElement.querySelector(
-      ".nihongo-generate-btn",
-    ) as HTMLButtonElement;
+		const loadingElement = this.overlayElement.querySelector(
+			".nihongo-loading",
+		) as HTMLElement;
+		const generateBtn = this.overlayElement.querySelector(
+			".nihongo-generate-btn",
+		) as HTMLButtonElement;
 
-    if (loadingElement) {
-      loadingElement.style.display = show ? "block" : "none";
-    }
-    if (generateBtn) {
-      generateBtn.disabled = show;
-    }
-  }
+		if (loadingElement) {
+			loadingElement.style.display = show ? "block" : "none";
+		}
+		if (generateBtn) {
+			generateBtn.disabled = show;
+		}
+	}
 
-  private showError(message: string): void {
-    if (!this.overlayElement) return;
+	private showError(message: string): void {
+		if (!this.overlayElement) return;
 
-    const errorElement = this.overlayElement.querySelector(
-      ".nihongo-error",
-    ) as HTMLElement;
-    if (errorElement) {
-      errorElement.textContent = message;
-      errorElement.style.display = "block";
-    }
-  }
+		const errorElement = this.overlayElement.querySelector(
+			".nihongo-error",
+		) as HTMLElement;
+		if (errorElement) {
+			errorElement.textContent = message;
+			errorElement.style.display = "block";
+		}
+	}
 
-  private clearError(): void {
-    if (!this.overlayElement) return;
+	private clearError(): void {
+		if (!this.overlayElement) return;
 
-    const errorElement = this.overlayElement.querySelector(
-      ".nihongo-error",
-    ) as HTMLElement;
-    if (errorElement) {
-      errorElement.style.display = "none";
-      errorElement.textContent = "";
-    }
-  }
+		const errorElement = this.overlayElement.querySelector(
+			".nihongo-error",
+		) as HTMLElement;
+		if (errorElement) {
+			errorElement.style.display = "none";
+			errorElement.textContent = "";
+		}
+	}
 
-  public destroy(): void {
-    this.stopAudio();
-    if (this.overlayElement) {
-      this.overlayElement.remove();
-      this.overlayElement = null;
-    }
+	public destroy(): void {
+		this.stopAudio();
+		if (this.overlayElement) {
+			this.overlayElement.remove();
+			this.overlayElement = null;
+		}
 
-    const styles = document.getElementById("nihongo-overlay-styles");
-    if (styles) {
-      styles.remove();
-    }
-  }
+		const styles = document.getElementById("nihongo-overlay-styles");
+		if (styles) {
+			styles.remove();
+		}
+	}
 }
 
 const _nihongoOverlay = new NihongoSpeechOverlay();
