@@ -12,16 +12,19 @@ export async function fetchResponse({
 	text: string;
 	gender: VoiceGender;
 }) {
-	const response = await fetch(`http://localhost:8787/tts`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
+	const response = await fetch(
+		`https://hanshi-server.adelekekehinde06.workers.dev/tts`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				text,
+				gender,
+			}),
 		},
-		body: JSON.stringify({
-			text,
-			gender,
-		}),
-	});
+	);
 
 	if (!response.ok) {
 		const errorBody = await response.text(); // Or response.json() if the API returns JSON errors
