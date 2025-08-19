@@ -33,7 +33,7 @@ const copyIconsPlugin = () => {
 export default defineConfig(({ mode }) => ({
 	plugins: [react(), copyIconsPlugin()],
 	server: {
-		open: mode === "development" ? "/overlay-dev.html" : "/popup.html",
+		open: "/popup.html",
 	},
 	test: {
 		globals: true,
@@ -49,7 +49,6 @@ export default defineConfig(({ mode }) => ({
 			input: {
 				popup_entry: "popup.html",
 				background: "src/background/background.ts",
-				overlay: "src/content/overlay.ts",
 			},
 			output: {
 				entryFileNames: "[name].js",

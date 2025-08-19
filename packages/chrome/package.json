@@ -7,6 +7,7 @@
 		"build": "vite build --mode development",
 		"build:watch": "vite build --mode development --watch",
 		"build:prod": "vite build --mode production",
+		"prepare:publish": "pnpm build:prod &&zip -r nihongo-speech-chrome-extension.zip dist/ -x \"*.map\" -x \"*/.DS_Store\"",
 		"preview": "vite preview",
 		"test": "vitest",
 		"test:ui": "vitest --ui"

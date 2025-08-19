@@ -31,11 +31,11 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 	}
 });
 
-const ID = "nihongo-speech";
-chrome.runtime.onInstalled.addListener(() => {
-	chrome.contextMenus.create({
-		id: ID,
-		title: "Generate Speech in nihongo-speech",
-		contexts: ["selection"],
-	});
-});
+// const ID = "nihongo-speech";
+// chrome.runtime.onInstalled.addListener(() => {
+// 	chrome.contextMenus.create({
+// 		id: ID,
+// 		title: "Generate Speech in nihongo-speech",
+// 		contexts: ["selection"],
+// 	});
+// });
