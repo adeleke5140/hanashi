@@ -3,7 +3,7 @@
 	"version": "1.2.0",
 	"description": "Chrome extension for Japanese TTS with realistic voices.",
 	"scripts": {
-		"dev": "vite",
+		"dev": "VITE_CJS_TRACE=true vite",
 		"build": "vite build --mode development",
 		"build:watch": "vite build --mode development --watch",
 		"build:prod": "vite build --mode production",

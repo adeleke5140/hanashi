@@ -2,6 +2,7 @@
 	"name": "hanashi",
 	"version": "0.0.1",
 	"description": "A Chrome extension for Japanese speech recognition",
+	"type": "module",
 	"scripts": {
 		"build": "pnpm --filter hanashi-chrome build",
 		"test": "pnpm --filter hanashi-chrome test",

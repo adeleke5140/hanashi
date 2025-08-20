@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./global.css";
 import AudioPlayer from "./audio-player";
 import { ErrorUI } from "./components/error";
-import { Header } from "./components/header";
 import { JapaneseInputForm } from "./components/japanese-input-form";
 
 const Popup = () => {

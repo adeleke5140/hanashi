@@ -3,8 +3,9 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: "rgba(253, 255, 121, 1)",
+				primary: "var(--primary)",
 				secondary: "rgba(20, 22, 18, 1)",
+				tertiary: "var(--tertiary)"
 			},
 			fontFamily: {
 				mono: [

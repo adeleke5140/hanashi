@@ -20,7 +20,6 @@ export const JapaneseInputForm = ({
     setLoading(true);
     setError(null);
     setAudioDataUrl(null);
-    chrome.storage.local.remove(["savedAudioUrl"]);
     if (audioElement) audioElement.pause();
     if (!chrome || !chrome.runtime || !chrome.runtime.sendMessage) {
       setLoading(false);
@@ -54,7 +53,6 @@ export const JapaneseInputForm = ({
         }
 
         setAudioDataUrl(response.dataUrl);
-        chrome.storage.local.set({ savedAudioUrl: response.dataUrl });
       },
     );
   };
