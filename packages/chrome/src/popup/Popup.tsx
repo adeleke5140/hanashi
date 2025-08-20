@@ -20,23 +20,33 @@ const Popup = () => {
   }, [audioElement]);
 
   return (
-    <main className="p-4 text-white bg-gray-100/50 border w-[343.08px]">
-      <JapaneseInputForm
-        setError={setError}
-        setAudioDataUrl={setAudioDataUrl}
-        audioElement={audioElement}
-      />
-
-      {error && <ErrorUI error={error || "エラーが発生しました"} />}
-
-      {audioDataUrl && (
-        <AudioPlayer
-          src={audioDataUrl}
-          autoPlay={true}
-          onAudioElement={setAudioElement}
+    <div className="grid bg-gradient-to-r py-80 from-blue-300 to to-blue-200 grid-cols-2  gap-16">
+      <h1
+        style={{
+          fontFamily: "InterVariable",
+        }}
+        className="text-6xl pl-[15%] tracking-tighter leading-[110%]"
+      >
+        Generate realistic readings of Japanese sentences
+      </h1>
+      <main className="p-4 text-white bg-gray-100/50 border w-[343.08px]">
+        <JapaneseInputForm
+          setError={setError}
+          setAudioDataUrl={setAudioDataUrl}
+          audioElement={audioElement}
         />
-      )}
-    </main>
+
+        {error && <ErrorUI error={error || "エラーが発生しました"} />}
+
+        {audioDataUrl && (
+          <AudioPlayer
+            src={audioDataUrl}
+            autoPlay={true}
+            onAudioElement={setAudioElement}
+          />
+        )}
+      </main>
+    </div>
   );
 };
 

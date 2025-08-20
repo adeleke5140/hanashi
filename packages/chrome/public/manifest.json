@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Nihongo Speech",
-  "version": "1.1.0",
-  "description": "Convert Japanese sentences to realistic male and female speech using advanced TTS APIs.",
+  "name": "Hanashi",
+  "version": "1.2.0",
+  "description": "Convert Japanese text to realistic speech.",
   "icons": {
     "16": "icon-16.png",
     "48": "icon-48.png",
@@ -19,7 +19,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["scripting"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

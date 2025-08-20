@@ -9,7 +9,8 @@
 		"build:prod": "vite build --mode production",
 		"preview": "vite preview",
 		"test": "vitest",
-		"test:ui": "vitest --ui"
+		"test:ui": "vitest --ui",
+		"package": "npm run build:prod && cd dist && zip -r ../nihongo-speech-extension.zip ."
 	},
 	"dependencies": {
 		"chrome-types": "^0.1.357",
