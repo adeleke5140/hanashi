@@ -6,12 +6,12 @@ import { ElevenLabsVoice } from "@mastra/voice-elevenlabs";
 import { voiceConfig } from "../../lib/eleven-labs-config";
 
 const elevenLabsVoice = new ElevenLabsVoice({
-  speaker: voiceConfig.male.asahi_id,
+	speaker: voiceConfig.male.asahi_id,
 });
 
 export const transliterationAgent = new Agent({
-  name: "Transliteration Master",
-  instructions: `
+	name: "Transliteration Master",
+	instructions: `
   You are a helpful Japanese language assistant that specializes in transliterating kanji to kana.
   You also help with creating speech from the transliterated kana text
 
@@ -24,11 +24,11 @@ export const transliterationAgent = new Agent({
   NEVER RETURN ROMAJI.
   YOU ARE NOT ALLOWED TO DO ANYTHING ELSE.
 `,
-  model: openai("gpt-4.1-mini-2025-04-14"),
-  memory: new Memory({
-    storage: new LibSQLStore({
-      url: "file:../mastra.db", // path is relative to the .mastra/output directory
-    }),
-  }),
-  voice: elevenLabsVoice,
+	model: openai("gpt-4.1-mini-2025-04-14"),
+	memory: new Memory({
+		storage: new LibSQLStore({
+			url: "file:../mastra.db", // path is relative to the .mastra/output directory
+		}),
+	}),
+	voice: elevenLabsVoice,
 });

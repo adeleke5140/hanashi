@@ -3,186 +3,186 @@
 @tailwind utilities;
 
 :root {
-    --primary: oklch(0% 0 0deg);
-    --background: oklch(100% 0 0deg);
-    --secondary: oklch(1 0 0);
-    --border: oklch(91.6% 0 0deg);
-    --button-border: oklch(0.53 0.25 265.05);
-    --active-button-border: oklch(0.4 0.22 263);
-    --gradient-stop-1: oklch(0.67 0.19 263);
-    --gradient-stop-2: oklch(0.59 0.26 263);
-    --gradient-stop-3: oklch(0.64 0.22 263);
-    --shadow:
-        inset 0 1px 0 oklch(1 0 0 / 0.2), inset 0 -1px 0 oklch(0 0 0 / 0.2),
-        0 1px 2px oklch(0 0 0 / 0.2);
-    --text-shadow: 0 1px oklch(13.8% 0.0245 216deg / 40%);
-    --radio-background: var(--secondary);
+	--primary: oklch(0% 0 0deg);
+	--background: oklch(100% 0 0deg);
+	--secondary: oklch(1 0 0);
+	--border: oklch(91.6% 0 0deg);
+	--button-border: oklch(0.53 0.25 265.05);
+	--active-button-border: oklch(0.4 0.22 263);
+	--gradient-stop-1: oklch(0.67 0.19 263);
+	--gradient-stop-2: oklch(0.59 0.26 263);
+	--gradient-stop-3: oklch(0.64 0.22 263);
+	--shadow:
+		inset 0 1px 0 oklch(1 0 0 / 0.2), inset 0 -1px 0 oklch(0 0 0 / 0.2), 0 1px
+		2px oklch(0 0 0 / 0.2);
+	--text-shadow: 0 1px oklch(13.8% 0.0245 216deg / 40%);
+	--radio-background: var(--secondary);
 }
 
 @font-face {
-    font-family: "Stick";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/stick-regular.ttf") format("truetype");
+	font-family: "Stick";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/stick-regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Kaisei Tokumin";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/kaisei-regular.ttf") format("truetype");
+	font-family: "Kaisei Tokumin";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/kaisei-regular.ttf") format("truetype");
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: "Stick", sans-serif;
-    background: white;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	font-family: "Stick", sans-serif;
+	background: white;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .form-button {
-    border: 1px solid var(--button-border);
-    background-image: linear-gradient(
-        180deg,
-        var(--gradient-stop-1),
-        var(--gradient-stop-2) 62%,
-        var(--gradient-stop-3)
-    );
-    color: var(--secondary);
-    text-shadow: var(--text-shadow);
-    box-shadow: var(--shadow);
-    transition:
-        transform 0.1s ease-out,
-        border 0.1s ease-out;
+	border: 1px solid var(--button-border);
+	background-image: linear-gradient(
+		180deg,
+		var(--gradient-stop-1),
+		var(--gradient-stop-2) 62%,
+		var(--gradient-stop-3)
+	);
+	color: var(--secondary);
+	text-shadow: var(--text-shadow);
+	box-shadow: var(--shadow);
+	transition:
+		transform 0.1s ease-out,
+		border 0.1s ease-out;
 
-    &:active {
-        transform: scale(0.98);
-        border-color: var(--active-button-border);
-    }
+	&:active {
+		transform: scale(0.98);
+		border-color: var(--active-button-border);
+	}
 }
 
 .destructive {
-    background: unset;
-    box-shadow:
-        0 0 #0000,
-        0 0 #0000,
-        0 0 #0000,
-        0 0 #0000,
-        0 0 0 1px #00000014,
-        0px 2px 2px #0000000a;
-    border: unset;
-    color: var(--primary);
-    text-shadow: unset;
+	background: unset;
+	box-shadow:
+		0 0 #0000,
+		0 0 #0000,
+		0 0 #0000,
+		0 0 #0000,
+		0 0 0 1px #00000014,
+		0px 2px 2px #0000000a;
+	border: unset;
+	color: var(--primary);
+	text-shadow: unset;
 }
 
 .font {
-    box-shadow: unset;
-    color: var(--primary);
-    padding: 4px 6px;
-    border-radius: 8px;
-    text-shadow: none;
+	box-shadow: unset;
+	color: var(--primary);
+	padding: 4px 6px;
+	border-radius: 8px;
+	text-shadow: none;
 
-    /*&:focus-visible {
+	/*&:focus-visible {
         outline: 1px solid var(--button-border);
     }*/
 }
 
 .font:nth-child(2) {
-    font-family: "Kaisei Tokumin", sans-serif;
-    font-weight: 600;
+	font-family: "Kaisei Tokumin", sans-serif;
+	font-weight: 600;
 }
 
 /* Radio button styles */
 .custom-radio {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    margin-right: 6px;
-    font-size: 16px;
-    user-select: none;
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 6px;
+	font-size: 16px;
+	user-select: none;
 }
 
 .custom-radio input[type="radio"] {
-    opacity: 0;
-    position: absolute;
-    width: 0;
-    height: 0;
+	opacity: 0;
+	position: absolute;
+	width: 0;
+	height: 0;
 }
 
 .custom-radio .radio-checkmark {
-    position: relative;
-    height: 20px;
-    width: 20px;
-    background-color: var(--radio-background);
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-right: 4px;
-    transition: all 0.2s ease-out;
+	position: relative;
+	height: 20px;
+	width: 20px;
+	background-color: var(--radio-background);
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	margin-right: 4px;
+	transition: all 0.2s ease-out;
 }
 
 .custom-radio input[type="radio"]:focus + .radio-checkmark {
-    box-shadow: 0 0 0 1px var(--button-border);
+	box-shadow: 0 0 0 1px var(--button-border);
 }
 
 .custom-radio:hover .radio-checkmark {
-    border-color: #aaa;
+	border-color: #aaa;
 }
 
 .custom-radio .radio-checkmark::after {
-    content: "";
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--button-border);
+	content: "";
+	position: absolute;
+	display: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: var(--button-border);
 }
 
 .custom-radio input[type="radio"]:checked + .radio-checkmark::after {
-    display: block;
+	display: block;
 }
 
 .custom-radio input[type="radio"]:checked + .radio-checkmark {
-    border-color: var(--button-border);
+	border-color: var(--button-border);
 }
 
 /* Audio slider styles */
 .audio-progress::-webkit-slider-thumb,
 .audio-volume::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 18px;
-    width: 10px;
-    border-radius: 2px;
-    background: linear-gradient(
-        to right,
-        var(--gradient-stop-1),
-        var(--gradient-stop-2)
-    );
-    cursor: pointer;
-    border: none;
-    box-shadow: var(--shadow);
-    position: relative;
-    transition: transform 200ms ease-out;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 18px;
+	width: 10px;
+	border-radius: 2px;
+	background: linear-gradient(
+		to right,
+		var(--gradient-stop-1),
+		var(--gradient-stop-2)
+	);
+	cursor: pointer;
+	border: none;
+	box-shadow: var(--shadow);
+	position: relative;
+	transition: transform 200ms ease-out;
 }
 
 .audio-progress::-webkit-slider-thumb:hover,
 .audio-volume::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .dark body {
-    background: oklch(0.15 0 0);
+	background: oklch(0.15 0 0);
 }
