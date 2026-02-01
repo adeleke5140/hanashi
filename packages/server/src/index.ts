@@ -1,8 +1,10 @@
 import { Hono } from "hono";
 import { env } from "hono/adapter";
 import { cors } from "hono/cors";
-import { voiceConfig } from "./lib/eleven-labs-config";
-import { generateTransliteration } from "./lib/generate-text";
+import { voiceConfig } from "./lib/11labs/eleven-labs-config";
+import { generateTransliteration } from "./lib/ai/generate-text";
+import { Pool } from "pg";
+
 const app = new Hono();
 
 app.use("*", cors());
@@ -18,6 +20,19 @@ const VOICES = {
 	male: voiceConfig.male.asahi_id,
 	female: voiceConfig.female.sakura_id,
 };
+
+const client = new Pool({
+	user: "admin",
+	port: 5140,
+	host: "localhost",
+	password: process.env.POSTGRES_PASSWORD,
+	database: "hanashi-db",
+});
+
+app.get("/test-db", (c) => {
+	const allUsers = client.query(`select * from users;`);
+	return c.json({ ok: true, users: allUsers });
+});
 
 app.get("/", (c) => {
 	return c.text("Welcome to Hanashi! 🌸");

@@ -1,0 +1,19 @@
+\c hanashi-db
+
+CREATE TABLE users (
+  user_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  username VARCHAR ( 25 ) UNIQUE NOT NULL,
+  email VARCHAR ( 100 ) UNIQUE NOT NULL,
+  last_login TIMESTAMP,
+  created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE audio (
+  audio_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  audio_text TEXT NOT NULL,
+  user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  file_key TEXT NOT NULL
+);
+
