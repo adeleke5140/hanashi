@@ -1,13 +1,30 @@
 {
-  "name": "server",
-  "scripts": {
-    "dev": "bun run --hot src/index.ts",
-	"db:up": "docker compose up -d"
-  },
-  "dependencies": {
-    "hono": "^4.11.7"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  }
+	"name": "server",
+	"scripts": {
+		"dev": "PORT=4000 bun run --hot src/index.ts",
+		"db:up": "docker compose up -d",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"db:reset": "drizzle-kit reset",
+		"open-auth-docs": "open-cli http://localhost:4000/api/auth/reference"
+	},
+	"dependencies": {
+		"@hanashi/email": "workspace:*",
+		"@ai-sdk/openai": "^3.0.25",
+		"ai": "^6.0.67",
+		"better-auth": "^1.4.18",
+		"consola": "^3.4.2",
+		"drizzle-orm": "^0.45.1",
+		"drizzle-seed": "^0.3.1",
+		"hono": "^4.11.7",
+		"pg": "^8.18.0",
+		"resend": "^6.9.1"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/pg": "^8.16.0",
+		"drizzle-kit": "^0.31.8",
+		"open-cli": "^8.0.0"
+	}
 }
