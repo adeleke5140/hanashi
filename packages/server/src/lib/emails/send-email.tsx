@@ -19,13 +19,12 @@ export async function sendEmail({
 	subject,
 	url,
 }: SendEmailInput) {
-
 	const emailResponse = await resend.emails.send({
 		from: "Hanashi <hello@hanashi.kehinde.xyz>",
 		to,
 		subject,
 		text: `Click the link to verify your email: ${url}`,
-		react: <VerifyEmail username={username} verificationUrl={url} />
+		react: <VerifyEmail username={username} verificationUrl={url} />,
 	});
 
 	if (emailResponse.error) {

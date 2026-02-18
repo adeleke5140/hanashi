@@ -1,4 +1,16 @@
-import { Body, Button, Container, Head, Heading, Html, Img, Preview, Section, Tailwind, Text } from '@react-email/components';
+import {
+	Body,
+	Button,
+	Container,
+	Head,
+	Heading,
+	Html,
+	Img,
+	Preview,
+	Section,
+	Tailwind,
+	Text,
+} from "@react-email/components";
 
 export interface VerifyEmailProps {
 	username?: string;
@@ -6,8 +18,8 @@ export interface VerifyEmailProps {
 }
 
 const VerifyEmail = ({
-	username = 'Nicole',
-	verificationUrl
+	username = "Nicole",
+	verificationUrl,
 }: VerifyEmailProps) => {
 	const previewText = `Welcome to Hanashi, ${username}!`;
 	return (
@@ -24,8 +36,9 @@ const VerifyEmail = ({
 							Hello {username},
 						</Text>
 						<Text className="text-start text-sm text-black leading-relaxed">
-							We're excited to have you onboard at Hanashi.
-							To begin your journey with us, please verify your email by clicking the button below.
+							We're excited to have you onboard at Hanashi. To begin your
+							journey with us, please verify your email by clicking the button
+							below.
 						</Text>
 						<Section className="text-center mt-[32px] mb-[32px]">
 							<Button
