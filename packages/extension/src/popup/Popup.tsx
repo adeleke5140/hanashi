@@ -12,7 +12,6 @@ const Popup = () => {
 		null,
 	);
 
-
 	useEffect(() => {
 		return () => {
 			if (audioElement) {
@@ -27,7 +26,6 @@ const Popup = () => {
 
 			<JapaneseInputForm
 				setError={setError}
-			
 				setAudioDataUrl={setAudioDataUrl}
 				audioElement={audioElement}
 			/>

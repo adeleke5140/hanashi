@@ -1,25 +1,27 @@
 {
 	"name": "hanashi",
 	"version": "0.0.1",
-	"description": "A Chrome extension for Japanese speech recognition",
+	"packageManager": "bun@1.2.23",
+	"workspaces": [
+		"packages/*"
+	],
+	"description": "monorepo for hanashi packages",
 	"scripts": {
-		"build": "pnpm --filter hanashi-chrome build",
-		"test": "pnpm --filter hanashi-chrome test",
-		"dev": "pnpm --filter hanashi-chrome dev",
-		"build:r": "pnpm --filter hanashi-raycast build",
-		"dev:r": "pnpm --filter hanashi-raycast dev",
-		"format": "biome format --write .",
+		"build": "bun run --filter hanashi-chrome build",
+		"test": "bun run --filter hanashi-chrome test",
+		"dev": "bun run --filter hanashi-chrome dev",
+		"build:r": "bun run --filter hanashi-raycast build",
+		"dev:r": "bun run --filter hanashi-raycast dev",
+		"email:dev": "bun run --filter @hanashi/email dev",
+		"fmt": "biome format --write .",
 		"lint": "biome lint"
 	},
 	"keywords": [
-		"chrome-extension",
-		"japanese",
-		"speech",
-		"recognition"
+		"japanese"
 	],
 	"author": "adeleke5140",
 	"license": "GPL-3.0",
 	"devDependencies": {
-		"@biomejs/biome": "2.1.1"
+		"@biomejs/biome": "2.4.2"
 	}
 }

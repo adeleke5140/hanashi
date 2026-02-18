@@ -1,0 +1,14 @@
+services:
+  hanashi-db:
+    image: postgres:17.4
+    hostname: "postgres"
+    restart: unless-stopped
+    container_name: hanashi
+    ports:
+      - 5140:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_DB: hanashi-db
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data/pg-db:/var/lib/postgresql

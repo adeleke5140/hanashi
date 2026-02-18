@@ -1,8 +1,10 @@
 import { Hono } from "hono";
 import { env } from "hono/adapter";
 import { cors } from "hono/cors";
-import { voiceConfig } from "./lib/eleven-labs-config";
-import { generateTransliteration } from "./lib/generate-text";
+import { voiceConfig } from "./lib/11labs/eleven-labs-config";
+import { generateTransliteration } from "./lib/ai/generate-text";
+import { auth } from "./lib/auth";
+
 const app = new Hono();
 
 app.use("*", cors());
@@ -18,6 +20,8 @@ const VOICES = {
 	male: voiceConfig.male.asahi_id,
 	female: voiceConfig.female.sakura_id,
 };
+
+app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
 app.get("/", (c) => {
 	return c.text("Welcome to Hanashi! 🌸");
